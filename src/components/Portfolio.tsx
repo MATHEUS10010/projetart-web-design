@@ -14,53 +14,53 @@ const Portfolio = () => {
       location: 'São Paulo, SP',
       area: '15m²',
       type: 'Cozinha Planejada',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      description: 'Cozinha moderna com ilha central, bancada em quartzo e acabamentos em laca branca com detalhes em madeira.'
+      image: '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
+      description: 'Cozinha moderna com ilha central, acabamentos em tons neutros e detalhes em madeira. Projeto com iluminação LED embutida e bancada com espaço para refeições.'
     },
     {
       id: 2,
-      title: 'Closet Sob Medida',
+      title: 'Quarto Planejado com Closet',
       location: 'Santos, SP',
-      area: '12m²',
-      type: 'Closet',
-      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      description: 'Closet espaçoso com divisórias inteligentes, iluminação LED e espelho de corpo inteiro.'
+      area: '18m²',
+      type: 'Quarto e Closet',
+      image: '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
+      description: 'Quarto completo com armários planejados, cabeceira integrada com iluminação e closet com portas espelhadas para ampliar o ambiente.'
     },
     {
       id: 3,
-      title: 'Home Office Executivo',
+      title: 'Consultório Odontológico',
       location: 'Guarulhos, SP',
-      area: '10m²',
-      type: 'Home Office',
-      image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      description: 'Escritório completo com mesa em L, estantes integradas e armários para organização.'
+      area: '12m²',
+      type: 'Consultório',
+      image: '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png',
+      description: 'Móveis planejados para consultório odontológico com acabamento em madeira clara, iluminação embutida e design funcional para equipamentos específicos.'
     },
     {
       id: 4,
-      title: 'Quarto de Casal Completo',
+      title: 'Sala de Estar Sofisticada',
       location: 'Osasco, SP',
-      area: '18m²',
-      type: 'Dormitório',
-      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      description: 'Quarto planejado com cabeceira integrada, criados-mudos suspensos e closet anexo.'
+      area: '25m²',
+      type: 'Sala de Estar',
+      image: '/lovable-uploads/0d6c0403-1e66-40e8-b715-4a91fdae41c4.png',
+      description: 'Sala de estar com painel para TV em mármore, rack planejado com detalhes em dourado e móvel aparador com acabamento premium.'
     },
     {
       id: 5,
-      title: 'Sala de TV Aconchegante',
+      title: 'Cozinha Gourmet com Bancada',
       location: 'Barueri, SP',
       area: '20m²',
-      type: 'Sala de TV',
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      description: 'Painel para TV com nichos decorativos, bancada inferior e iluminação ambiente.'
+      type: 'Cozinha Gourmet',
+      image: '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
+      description: 'Cozinha gourmet integrada com sala, bancada em quartzo, painel ripado e revestimento em mármore. Acabamentos premium e iluminação planejada.'
     },
     {
       id: 6,
-      title: 'Banheiro de Luxo',
+      title: 'Quarto de Casal Completo',
       location: 'São Caetano, SP',
-      area: '8m²',
-      type: 'Banheiro',
-      image: 'https://images.unsplash.com/photo-1507652955-f3dcef5a3be5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      description: 'Banheiro sofisticado com móveis suspensos, espelheira com LED e acabamentos premium.'
+      area: '16m²',
+      type: 'Dormitório',
+      image: '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
+      description: 'Quarto planejado com cabeceira estofada, criados-mudos integrados e armários com acabamento premium em tons neutros.'
     }
   ];
 
