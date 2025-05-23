@@ -23,7 +23,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png")',
+          backgroundImage: 'url("/lovable-uploads/73f88ab5-0aa5-4ce5-b455-5ac580619c28.png")',
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
@@ -31,7 +31,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
           Móveis Planejados Sob Medida{' '}
           <span className="block text-white">
             que Transformam Seu Espaço
