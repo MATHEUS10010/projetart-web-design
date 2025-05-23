@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -37,10 +36,10 @@ const Process = () => {
   ];
 
   return (
-    <section id="processo" className="py-2 bg-white">
+    <section id="processo" className="py-10 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-4">
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-1">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-4">
             Nosso Processo de Trabalho
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
