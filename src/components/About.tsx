@@ -53,7 +53,7 @@ const About = () => {
               <Card className="border-0 shadow-lg overflow-hidden">
                 <CardContent className="p-0">
                   <img
-                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                    src="/lovable-uploads/7145030f-93e4-4616-8a99-25ef98a62346.png"
                     alt="Robson Jardel Schwarzer palestrando sobre móveis planejados"
                     className="w-full h-80 object-cover"
                   />
