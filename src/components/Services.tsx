@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Home, Bath, ChefHat, Bed, Sofa, Briefcase, Store, Stethoscope } from 'lucide-react';
+import { Home, Bath, ChefHat, Bed, Sofa, Briefcase, Store, Stethoscope, TreePine } from 'lucide-react';
 
 const Services = () => {
   // Residential services array
@@ -34,6 +34,13 @@ const Services = () => {
       description: "Salas de estar e jantar com móveis planejados que combinam estética e funcionalidade para receber com elegância.",
       features: ["Painéis de TV", "Mesas extensíveis", "Buffets planejados", "Racks com iluminação"],
       icon: <Sofa className="w-10 h-10 text-wood-medium" />
+    },
+    {
+      id: "area-lazer",
+      title: "Área de Lazer",
+      description: "Espaços de lazer personalizados como home theater, área gourmet e espaços externos com móveis sob medida para o seu conforto.",
+      features: ["Móveis para área gourmet", "Bancos e mesas externas", "Painéis para TV", "Móveis resistentes a intempéries"],
+      icon: <TreePine className="w-10 h-10 text-wood-medium" />
     },
   ];
 
@@ -146,3 +153,4 @@ const Services = () => {
 };
 
 export default Services;
+
