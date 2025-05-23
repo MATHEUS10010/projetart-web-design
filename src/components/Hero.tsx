@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Phone } from 'lucide-react';
@@ -33,7 +32,7 @@ const Hero = () => {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
           Móveis Planejados{' '}
-          <span className="block text-yellow-400">
+          <span className="block text-white">
             que Transformam Seu Espaço
           </span>
         </h1>
