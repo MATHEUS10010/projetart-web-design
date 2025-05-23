@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Home, Bath, ChefHat, Bed, Shower, Sofa, Briefcase, Store, Stethoscope } from 'lucide-react';
+import { Home, Bath, ChefHat, Bed, Sofa, Briefcase, Store, Stethoscope } from 'lucide-react';
 
 const Services = () => {
   // Residential services array
@@ -26,7 +26,7 @@ const Services = () => {
       title: "Banheiros",
       description: "Banheiros e lavabos com móveis sob medida, combinando beleza e resistência para ambientes úmidos com estilo.",
       features: ["Materiais resistentes à umidade", "Cubas e bancadas", "Nichos organizadores", "Gavetas inteligentes"],
-      icon: <Shower className="w-10 h-10 text-wood-medium" />
+      icon: <Bath className="w-10 h-10 text-wood-medium" />
     },
     {
       id: "salas",
