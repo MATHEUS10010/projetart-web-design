@@ -36,22 +36,13 @@ const Hero = () => {
           Criamos ambientes únicos com design personalizado, qualidade excepcional e acabamento impecável
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+        <div className="flex justify-center animate-fade-in">
           <Button 
             onClick={scrollToOrcamento}
             size="lg"
             className="bg-wood-dark hover:bg-wood-medium text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
           >
             Peça Sua Proposta
-          </Button>
-          
-          <Button 
-            onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
-            variant="outline"
-            size="lg"
-            className="border-2 border-white text-white hover:bg-white hover:text-neutral-800 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300"
-          >
-            Fale Conosco
           </Button>
         </div>
       </div>
