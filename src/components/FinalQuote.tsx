@@ -11,7 +11,7 @@ const FinalQuote = () => {
   };
 
   return (
-    <section id="solicite-orcamento" className="py-10 bg-wood-dark text-white">
+    <section id="solicite-orcamento" className="py-6 bg-wood-dark text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-3">

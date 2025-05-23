@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About = () => {
   return (
-    <section id="sobre" className="py-10 bg-white">
+    <section id="sobre" className="py-4 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -93,7 +92,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-wood-gradient p-6 rounded-2xl text-white text-center">
+          <div className="mt-6 bg-wood-gradient p-6 rounded-2xl text-white text-center">
             <h3 className="text-2xl font-bold mb-3">
               Transformamos Espaços, Criamos Memórias
             </h3>
