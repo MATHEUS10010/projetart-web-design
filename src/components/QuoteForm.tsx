@@ -118,11 +118,10 @@ const QuoteForm = () => {
                         <SelectValue placeholder="Selecione uma faixa" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ate-10k">Até R$ 10.000</SelectItem>
-                        <SelectItem value="10k-25k">R$ 10.000 - R$ 25.000</SelectItem>
-                        <SelectItem value="25k-50k">R$ 25.000 - R$ 50.000</SelectItem>
-                        <SelectItem value="50k-100k">R$ 50.000 - R$ 100.000</SelectItem>
-                        <SelectItem value="acima-100k">Acima de R$ 100.000</SelectItem>
+                        <SelectItem value="20k-30k">De R$20k a R$30k</SelectItem>
+                        <SelectItem value="30k-50k">De R$30k a R$50k</SelectItem>
+                        <SelectItem value="50k-80k">De R$50k a R$80k</SelectItem>
+                        <SelectItem value="acima-80k">Acima de R$80k</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
