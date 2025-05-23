@@ -100,7 +100,8 @@ const QuoteForm = () => {
   // Send information to WhatsApp
   const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
     const formattedMessage = formatClientInfo(data);
-    const whatsappNumber = '81993122958'; // WhatsApp number
+    // Format the number correctly for Brazil: add country code 55 and remove any non-digit characters
+    const whatsappNumber = '5581993122958'; // Brazilian format with country code 55
     const encodedMessage = encodeURIComponent(formattedMessage);
     
     // Use the API URL format instead of wa.me to open directly in WhatsApp
