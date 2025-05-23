@@ -1,19 +1,20 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About = () => {
   return (
-    <section id="sobre" className="py-4 bg-white">
+    <section id="sobre" className="py-2 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-5">
+              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-3">
                 Sobre a Projetart
               </h2>
               
-              <div className="space-y-4 text-lg text-neutral-600 leading-relaxed">
+              <div className="space-y-3 text-lg text-neutral-600 leading-relaxed">
                 <p>
                   Há mais de <strong className="text-wood-dark">10 anos</strong> no mercado, a Projetart se dedica 
                   a criar móveis planejados sob medida que transformam espaços e realizam sonhos. Nossa paixão 
@@ -33,7 +34,7 @@ const About = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 mt-6">
+              <div className="grid grid-cols-3 gap-6 mt-4">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-wood-dark mb-1">10+</div>
                   <div className="text-sm text-neutral-600">Anos de Experiência</div>
@@ -49,7 +50,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               <Card className="border-0 shadow-lg overflow-hidden">
                 <CardContent className="p-0">
                   <div className="flex justify-center bg-neutral-900 p-4">
@@ -92,7 +93,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="mt-6 bg-wood-gradient p-6 rounded-2xl text-white text-center">
+          <div className="mt-4 bg-wood-gradient p-6 rounded-2xl text-white text-center">
             <h3 className="text-2xl font-bold mb-3">
               Transformamos Espaços, Criamos Memórias
             </h3>
