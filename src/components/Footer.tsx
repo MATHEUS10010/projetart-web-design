@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phone = '5511999999999';
+    const phone = '5555999633435';
     const message = 'Olá! Gostaria de solicitar um orçamento para móveis planejados.';
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -32,10 +32,6 @@ const Footer = () => {
     window.open('https://instagram.com/projetartmoveissobmedida', '_blank');
   };
 
-  const handleFacebookClick = () => {
-    window.open('https://facebook.com/projetart', '_blank');
-  };
-
   return (
     <footer id="contato" className="bg-neutral-800 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -43,7 +39,7 @@ const Footer = () => {
           
           {/* Logo e Descrição */}
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold mb-4 text-wood-light">Projetart</h3>
+            <h3 className="text-2xl font-bold mb-4 text-wood-light">Projetart - Móveis sob medida</h3>
             <p className="text-neutral-300 mb-6 leading-relaxed">
               Móveis planejados sob medida com mais de 10 anos de experiência. 
               Transformamos espaços com qualidade e design exclusivo.
@@ -56,14 +52,6 @@ const Footer = () => {
                 className="border-wood-medium text-wood-light hover:bg-wood-light hover:text-neutral-800"
               >
                 📷 Instagram
-              </Button>
-              <Button
-                onClick={handleFacebookClick}
-                variant="outline"
-                size="sm"
-                className="border-wood-medium text-wood-light hover:bg-wood-light hover:text-neutral-800"
-              >
-                📘 Facebook
               </Button>
             </div>
           </div>
@@ -105,15 +93,15 @@ const Footer = () => {
               <div>
                 <p className="font-medium text-wood-light">📍 Endereço:</p>
                 <p className="text-sm">
-                  Rua dos Móveis, 123<br />
-                  Vila Planejada - São Paulo, SP<br />
-                  CEP: 01234-567
+                  BR 472 Esquina Wunsch<br />
+                  Três de Maio - RS<br />
+                  CEP: 98910-000
                 </p>
               </div>
               
               <div>
                 <p className="font-medium text-wood-light">📞 Telefone:</p>
-                <p className="text-sm">(11) 3456-7890</p>
+                <p className="text-sm">(55) 99963-3435</p>
               </div>
               
               <div>
@@ -122,7 +110,7 @@ const Footer = () => {
                   onClick={handleWhatsAppClick}
                   className="text-sm hover:text-wood-light transition-colors duration-200"
                 >
-                  (11) 99999-9999
+                  (55) 99963-3435
                 </button>
               </div>
               
@@ -150,14 +138,18 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-neutral-700">
           <div className="text-center">
             <h4 className="text-lg font-semibold mb-4 text-wood-light">Horário de Atendimento</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-neutral-300 max-w-md mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-neutral-300 max-w-lg mx-auto">
               <div>
                 <p className="font-medium">Segunda à Sexta:</p>
-                <p className="text-sm">08:00 às 18:00</p>
+                <p className="text-sm">07:30 às 12:00, 13:30 às 18:00</p>
               </div>
               <div>
-                <p className="font-medium">Sábados:</p>
-                <p className="text-sm">08:00 às 12:00</p>
+                <p className="font-medium">Sábado:</p>
+                <p className="text-sm">07:30 às 12:00</p>
+              </div>
+              <div>
+                <p className="font-medium">Domingo:</p>
+                <p className="text-sm">Fechado</p>
               </div>
             </div>
           </div>
@@ -166,7 +158,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-neutral-700 text-center text-neutral-400">
           <p className="text-sm">
-            © {currentYear} Projetart Móveis Planejados. Todos os direitos reservados.
+            © {currentYear} Projetart - Móveis sob medida. Todos os direitos reservados.
           </p>
           <p className="text-xs mt-2">
             Desenvolvido com ❤️ para transformar espaços em sonhos realizados.
