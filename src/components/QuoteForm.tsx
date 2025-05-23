@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -97,17 +98,27 @@ const QuoteForm = () => {
 - Descrição do projeto: ${data.description}`;
   };
 
-  // Send information to WhatsApp - Updated to work on mobile
+  // Send information to WhatsApp - Updated to use deep linking
   const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
     const formattedMessage = formatClientInfo(data);
     const whatsappNumber = '5581993122958'; // Brazilian format with country code 55
     const encodedMessage = encodeURIComponent(formattedMessage);
     
-    // Direct link to WhatsApp that works consistently on all devices
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+    // Try using the WhatsApp direct protocol first (whatsapp://)
+    const whatsappDeepLink = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
     
-    // Use window.location.href for direct redirection instead of window.open
-    window.location.href = whatsappUrl;
+    // Use window.location.href for direct redirection
+    window.location.href = whatsappDeepLink;
+    
+    // Fallback to the web version after a short delay if the app didn't open
+    setTimeout(() => {
+      const currentURL = window.location.href;
+      // If we're still on the same page after trying the deep link, use the web version
+      if (currentURL.includes(window.location.pathname)) {
+        const webWhatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+        window.location.href = webWhatsappUrl;
+      }
+    }, 1000);
   };
 
   // Function to simulate sending email (in a real implementation, this would call an API)
@@ -135,7 +146,7 @@ const QuoteForm = () => {
       // Send to email (in this example, we're just simulating it)
       await sendToEmail(data);
       
-      // Directly redirect to WhatsApp without showing toast
+      // Directly redirect to WhatsApp app
       sendToWhatsApp(data);
       
       // Reset form (this will only happen if the WhatsApp redirect is blocked)
