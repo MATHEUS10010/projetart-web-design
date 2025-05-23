@@ -53,16 +53,12 @@ const About = () => {
             <div className="space-y-8">
               <Card className="border-0 shadow-lg overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="relative">
+                  <div className="flex justify-center bg-neutral-900 p-4">
                     <img
-                      src="/lovable-uploads/abf6308b-5a5e-49d8-945e-7e7254ceac64.png"
-                      alt="Robson Schwarzer palestrando sobre móveis planejados"
-                      className="w-full object-cover h-auto"
+                      src="/lovable-uploads/54e60df7-32b4-4795-8074-6be725d18640.png"
+                      alt="Projetart Móveis Sob Medida - 10 Anos"
+                      className="w-auto max-h-[400px] object-contain"
                     />
-                  </div>
-                  <div className="p-6 bg-wood-gradient text-white">
-                    <h3 className="text-xl font-semibold mb-2">Robson Schwarzer</h3>
-                    <p className="text-sm opacity-90">Fundador e Proprietário da Projetart</p>
                   </div>
                 </CardContent>
               </Card>
