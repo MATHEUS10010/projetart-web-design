@@ -58,7 +58,7 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+              className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-neutral-900 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
             >
               Ver Projetos
               <ArrowRight className="ml-2 h-5 w-5" />
