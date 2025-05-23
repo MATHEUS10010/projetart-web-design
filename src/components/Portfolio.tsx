@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -55,12 +54,12 @@ const Portfolio = () => {
     },
     {
       id: 6,
-      title: 'Quarto de Casal Completo',
+      title: 'Escritório Planejado',
       location: 'Três de Maio, RS',
-      area: '16m²',
-      type: 'Dormitório',
-      image: '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
-      description: 'Quarto planejado com cabeceira estofada, criados-mudos integrados e armários com acabamento premium em tons neutros.'
+      area: '14m²',
+      type: 'Escritório',
+      image: '/lovable-uploads/91740045-ea3b-479c-9e73-2ab0bcae5fd5.png',
+      description: 'Escritório completo com armários planejados, bancada para dois postos de trabalho, iluminação embutida e acabamento em tons claros com detalhe em madeira natural.'
     }
   ];
 
