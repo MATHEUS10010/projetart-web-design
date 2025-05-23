@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -103,7 +102,9 @@ const QuoteForm = () => {
     const formattedMessage = formatClientInfo(data);
     const whatsappNumber = '81993122958'; // WhatsApp number
     const encodedMessage = encodeURIComponent(formattedMessage);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Use the API URL format instead of wa.me to open directly in WhatsApp
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
     
     // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank');
