@@ -30,15 +30,15 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20 md:pt-0">
+        <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-white mb-6 leading-tight">
           Móveis Planejados Sob Medida{' '}
           <span className="block text-white">
             que Transformam Seu Espaço
           </span>
         </h1>
         
-        <p className="text-xl md:text-2xl text-neutral-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-2xl text-neutral-200 mb-8 max-w-2xl mx-auto leading-relaxed">
           Criamos ambientes únicos com design personalizado, 
           qualidade excepcional e acabamento impecável
         </p>
