@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -180,10 +179,10 @@ const QuoteForm = () => {
                 Receba sua Proposta Gratuita
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-8">
+            <CardContent className="p-6 pt-3">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-2">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 -mt-3">
                     <FormField
                       control={form.control}
                       name="name"
@@ -226,7 +225,7 @@ const QuoteForm = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <FormField
                       control={form.control}
                       name="phone"
