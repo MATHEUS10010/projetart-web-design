@@ -64,7 +64,8 @@ const Hero = () => {
           </Button>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+        {/* Stats section - Added mb-16 for mobile to prevent overlap with scroll indicator */}
+        <div className="mt-12 mb-16 md:mb-0 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
           <div className="text-center">
             <div className="text-3xl font-bold text-wood-light mb-2">10+</div>
             <div className="text-neutral-300">Anos de Experiência</div>
@@ -80,8 +81,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce pointer-events-none">
+      {/* Scroll Indicator - Adjusted position for better mobile visibility */}
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce pointer-events-none">
         <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
