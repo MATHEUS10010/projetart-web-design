@@ -124,13 +124,8 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-
-            <Button
-              onClick={handleWhatsAppClick}
-              className="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition-all duration-300"
-            >
-              💬 Falar no WhatsApp
-            </Button>
+            
+            {/* WhatsApp button removed as requested */}
           </div>
         </div>
 
