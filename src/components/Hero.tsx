@@ -18,20 +18,20 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
-      {/* Background Image */}
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
+      {/* Background Image - Fixed position instead of covering the entire viewport */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{
           backgroundImage: 'url("/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png")',
         }}
       >
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/50 pointer-events-none" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20 md:pt-0">
-        <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20 md:pt-0 pointer-events-auto">
+        <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-white mb-6 leading-tight mt-8 md:mt-0">
           Móveis Planejados Sob Medida{' '}
           <span className="block text-white">
             que Transformam Seu Espaço
@@ -81,7 +81,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce pointer-events-none">
         <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
