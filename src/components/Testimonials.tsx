@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
 import {
   Carousel,
   CarouselContent,
@@ -19,19 +20,86 @@ interface GoogleReview {
   date?: string;
 }
 
+// URL da API proxy para o Google Places (em uma implementação real, isso estaria em um arquivo .env ou em uma configuração)
+const GOOGLE_PLACE_ID = '0x94f951122a4f8875:0x22a1733e38568c16'; // ID do lugar Projetart no Google
+const API_URL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_PLACE_ID}&fields=reviews&key=YOUR_API_KEY_HERE`;
+
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [apiKeyInput, setApiKeyInput] = useState('');
+  const [apiKey, setApiKey] = useState('');
 
   useEffect(() => {
-    // In a real application, we would fetch this data from a Google API
-    // For now, we'll use actual reviews but manually added since direct Google API
-    // access would require API keys and server-side implementation
+    // Se temos uma chave API salva no localStorage, usamos ela
+    const savedApiKey = localStorage.getItem('google_places_api_key');
+    if (savedApiKey) {
+      setApiKey(savedApiKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Carregamos avaliações apenas se tivermos uma chave API
+    if (apiKey) {
+      fetchRealReviews();
+    } else {
+      // Usa avaliações de exemplo se não tivermos uma chave API
+      loadExampleReviews();
+    }
+  }, [apiKey]);
+
+  const fetchRealReviews = async () => {
     setIsLoading(true);
+    setError(null);
     
-    // These are real reviews from the Google page
+    try {
+      // Substituir YOUR_API_KEY_HERE pela chave real
+      const apiUrl = API_URL.replace('YOUR_API_KEY_HERE', apiKey);
+      
+      // Em produção, isso deveria ser feito através de um backend para proteger sua chave API
+      const response = await fetch(apiUrl);
+      
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar avaliações: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.status === 'OK' && data.result && data.result.reviews) {
+        // Transformar os dados da API para o formato que nosso componente espera
+        const googleReviews: GoogleReview[] = data.result.reviews.map((review: any) => ({
+          name: review.author_name,
+          location: 'Rio Grande do Sul', // O Google Places API não fornece localização específica do usuário
+          text: review.text,
+          image: review.profile_photo_url || 'https://via.placeholder.com/50',
+          rating: review.rating,
+          date: review.relative_time_description
+        }));
+        
+        setReviews(googleReviews);
+      } else {
+        throw new Error('Não foi possível obter avaliações do Google');
+      }
+    } catch (err: any) {
+      console.error("Erro ao buscar avaliações do Google:", err);
+      setError(err.message);
+      toast({
+        title: "Erro ao buscar avaliações",
+        description: "Usando avaliações de exemplo. " + err.message,
+        variant: "destructive"
+      });
+      
+      // Se falhar, carregamos avaliações de exemplo
+      loadExampleReviews();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const loadExampleReviews = () => {
+    // Avaliações de exemplo como fallback
     const googleReviews: GoogleReview[] = [
       {
         name: 'Marcia Silva',
@@ -74,11 +142,22 @@ const Testimonials = () => {
         date: 'há 2 anos'
       },
     ];
-
+    
     setReviews(googleReviews);
     setIsLoading(false);
-    
-  }, []);
+  };
+
+  const saveApiKey = () => {
+    if (apiKeyInput.trim()) {
+      localStorage.setItem('google_places_api_key', apiKeyInput.trim());
+      setApiKey(apiKeyInput.trim());
+      toast({
+        title: "Chave API salva",
+        description: "Buscando avaliações do Google...",
+      });
+      setApiKeyInput('');
+    }
+  };
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % reviews.length);
@@ -112,6 +191,27 @@ const Testimonials = () => {
           </a>
         </div>
 
+        {/* API Key Input (apenas para demonstração - em produção isso deveria estar no backend) */}
+        {!apiKey && (
+          <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mb-8">
+            <h3 className="text-lg font-semibold mb-2">Configurar API do Google Places</h3>
+            <p className="text-sm text-neutral-600 mb-3">
+              Para buscar avaliações reais, insira sua chave API do Google Places. 
+              (Em um ambiente de produção, isso deve ser configurado no servidor)
+            </p>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={apiKeyInput}
+                onChange={(e) => setApiKeyInput(e.target.value)}
+                placeholder="Chave API do Google Places"
+                className="flex-1 border border-neutral-300 rounded px-3 py-2"
+              />
+              <Button onClick={saveApiKey}>Salvar</Button>
+            </div>
+          </div>
+        )}
+
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-wood-dark"></div>
@@ -119,6 +219,15 @@ const Testimonials = () => {
         ) : error ? (
           <div className="text-center py-10">
             <p className="text-red-500">Não foi possível carregar as avaliações. Por favor, tente novamente mais tarde.</p>
+            {apiKey && (
+              <Button 
+                onClick={fetchRealReviews} 
+                className="mt-4"
+                variant="outline"
+              >
+                Tentar novamente
+              </Button>
+            )}
           </div>
         ) : (
           <div className="max-w-4xl mx-auto">
@@ -216,3 +325,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
