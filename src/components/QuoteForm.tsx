@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -75,7 +74,6 @@ const QuoteForm = () => {
     form.setValue('areas', areasString);
   };
 
-  // Format client information for WhatsApp and email
   const formatClientInfo = (data: z.infer<typeof formSchema>) => {
     const areas = selectedAreas.length > 0 ? selectedAreas.join(' / ') : 'Não especificado';
     let budget = 'Não especificado';
@@ -98,7 +96,6 @@ const QuoteForm = () => {
 - Descrição do projeto: ${data.description}`;
   };
 
-  // Send information to WhatsApp - Updated to use deep linking
   const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
     const formattedMessage = formatClientInfo(data);
     const whatsappNumber = '5581993122958'; // Brazilian format with country code 55
