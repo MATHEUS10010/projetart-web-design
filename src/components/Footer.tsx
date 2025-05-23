@@ -117,10 +117,10 @@ const Footer = () => {
               <div>
                 <p className="font-medium text-wood-light">✉️ E-mail:</p>
                 <a 
-                  href="mailto:contato@projetart.com.br"
+                  href="mailto:projetart@projetart.com"
                   className="text-sm hover:text-wood-light transition-colors duration-200"
                 >
-                  contato@projetart.com.br
+                  projetart@projetart.com
                 </a>
               </div>
             </div>
