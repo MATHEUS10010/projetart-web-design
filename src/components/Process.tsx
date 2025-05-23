@@ -37,7 +37,7 @@ const Process = () => {
   ];
 
   return (
-    <section id="processo" className="py-10 bg-white">
+    <section id="processo" className="pb-10 pt-0 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-4">
