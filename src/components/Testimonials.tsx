@@ -1,8 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { toast } from '@/hooks/use-toast';
 import {
   Carousel,
   CarouselContent,
@@ -13,151 +12,161 @@ import {
 
 interface GoogleReview {
   name: string;
-  location: string;
+  numberOfReviews?: string;
   text: string;
   image: string;
   rating: number;
-  date?: string;
+  date: string;
+  localGuide?: boolean;
+  photos?: number;
 }
-
-// URL da API proxy para o Google Places (em uma implementação real, isso estaria em um arquivo .env ou em uma configuração)
-const GOOGLE_PLACE_ID = '0x94f951122a4f8875:0x22a1733e38568c16'; // ID do lugar Projetart no Google
-const API_URL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_PLACE_ID}&fields=reviews&key=YOUR_API_KEY_HERE`;
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [reviews, setReviews] = useState<GoogleReview[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [apiKeyInput, setApiKeyInput] = useState('');
-  const [apiKey, setApiKey] = useState('');
-
-  useEffect(() => {
-    // Se temos uma chave API salva no localStorage, usamos ela
-    const savedApiKey = localStorage.getItem('google_places_api_key');
-    if (savedApiKey) {
-      setApiKey(savedApiKey);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Carregamos avaliações apenas se tivermos uma chave API
-    if (apiKey) {
-      fetchRealReviews();
-    } else {
-      // Usa avaliações de exemplo se não tivermos uma chave API
-      loadExampleReviews();
-    }
-  }, [apiKey]);
-
-  const fetchRealReviews = async () => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      // Substituir YOUR_API_KEY_HERE pela chave real
-      const apiUrl = API_URL.replace('YOUR_API_KEY_HERE', apiKey);
-      
-      // Em produção, isso deveria ser feito através de um backend para proteger sua chave API
-      const response = await fetch(apiUrl);
-      
-      if (!response.ok) {
-        throw new Error(`Erro ao buscar avaliações: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.status === 'OK' && data.result && data.result.reviews) {
-        // Transformar os dados da API para o formato que nosso componente espera
-        const googleReviews: GoogleReview[] = data.result.reviews.map((review: any) => ({
-          name: review.author_name,
-          location: 'Rio Grande do Sul', // O Google Places API não fornece localização específica do usuário
-          text: review.text,
-          image: review.profile_photo_url || 'https://via.placeholder.com/50',
-          rating: review.rating,
-          date: review.relative_time_description
-        }));
-        
-        setReviews(googleReviews);
-      } else {
-        throw new Error('Não foi possível obter avaliações do Google');
-      }
-    } catch (err: any) {
-      console.error("Erro ao buscar avaliações do Google:", err);
-      setError(err.message);
-      toast({
-        title: "Erro ao buscar avaliações",
-        description: "Usando avaliações de exemplo. " + err.message,
-        variant: "destructive"
-      });
-      
-      // Se falhar, carregamos avaliações de exemplo
-      loadExampleReviews();
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const loadExampleReviews = () => {
-    // Avaliações de exemplo como fallback
-    const googleReviews: GoogleReview[] = [
-      {
-        name: 'Marcia Silva',
-        location: 'Rio Grande do Sul',
-        text: 'Trabalho excepcional. Profissionais qualificados e atenciosos. Super recomendo!',
-        image: 'https://lh3.googleusercontent.com/a-/ALV-UjUW4xmmoxJVYjyPDqCfd32X_zLPIecfkT-ZLkqlhw-1jpo=w120-h120-p-rp-mo-br100',
-        rating: 5,
-        date: 'há 1 ano'
-      },
-      {
-        name: 'Paulo Souza',
-        location: 'Rio Grande do Sul',
-        text: 'Contratei a Projetart para meu home office e o resultado ficou incrível! Projeto personalizado e entregue dentro do prazo combinado.',
-        image: 'https://lh3.googleusercontent.com/a-/ALV-UjUbx74M29Wk0wjfQtI0YcXL7KBVei6KOdi7blZebhNNvbQ=w120-h120-p-rp-mo-br100',
-        rating: 5,
-        date: 'há 2 anos'
-      },
-      {
-        name: 'Daniela Costa',
-        location: 'Rio Grande do Sul',
-        text: 'Móveis com excelente acabamento e design moderno. A equipe de instalação foi muito profissional e cuidadosa.',
-        image: 'https://lh3.googleusercontent.com/a-/ALV-UjVcJXvhQ4DacwJKvxT3ycv1BQJnY6GUl-zMGMJt4EZrJCc=w120-h120-p-rp-mo-br100', 
-        rating: 5,
-        date: 'há 2 anos'
-      },
-      {
-        name: 'Roberto Oliveira',
-        location: 'Rio Grande do Sul',
-        text: 'Minha cozinha planejada ficou exatamente como eu sonhava! Materiais de primeira qualidade e preço justo.',
-        image: 'https://lh3.googleusercontent.com/a-/ALV-UjVZvFLyA3CIY9YuSFFd9VtUzwl-819AjYaYFC0LKTGHA2g=w120-h120-p-rp-mo-br100',
-        rating: 5,
-        date: 'há 1 ano'
-      },
-      {
-        name: 'Amanda Santos',
-        location: 'Rio Grande do Sul',
-        text: 'Atendimento personalizado desde o projeto até a instalação. Super recomendo a Projetart para quem busca qualidade e bom gosto.',
-        image: 'https://lh3.googleusercontent.com/a-/ALV-UjUeZnQ0Ifl4k1BLmgPQf7pZFjQ02-LbgkJFaPTse0CnDQ=w120-h120-p-rp-mo-br100',
-        rating: 5,
-        date: 'há 2 anos'
-      },
-    ];
-    
-    setReviews(googleReviews);
-    setIsLoading(false);
-  };
-
-  const saveApiKey = () => {
-    if (apiKeyInput.trim()) {
-      localStorage.setItem('google_places_api_key', apiKeyInput.trim());
-      setApiKey(apiKeyInput.trim());
-      toast({
-        title: "Chave API salva",
-        description: "Buscando avaliações do Google...",
-      });
-      setApiKeyInput('');
-    }
-  };
+  
+  // Real Google reviews from the provided screenshots
+  const reviews: GoogleReview[] = [
+    {
+      name: 'Rafael Reinheimer',
+      numberOfReviews: '5 avaliações',
+      text: 'Gostaria de expressar meu sincero agradecimento pelo incrível trabalho que vocês realizaram com os móveis planejados. ❤️ Desde o atendimento inicial até a instalação final, cada etapa foi executada com um profissionalismo e capricho...',
+      image: '/lovable-uploads/6c812c0a-4abd-44bb-9cc4-2d9ac182b976.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Airton Luiz Wilhelm',
+      numberOfReviews: '3 avaliações',
+      text: 'Excelente experiência com a Projetart! Móveis de qualidade, com um acabamento impecável e design sob medida que realmente transformam os ambientes. Recomendo para quem busca móveis personalizados que unem estilo e funcionalidade!',
+      image: '/lovable-uploads/6c812c0a-4abd-44bb-9cc4-2d9ac182b976.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'NO AR Notícias',
+      numberOfReviews: '2 avaliações',
+      text: 'Ficamos muito satisfeitos com a qualidade dos móveis da Projetart. Percebemos profissionalismo, pois durante o desenvolvimento do projeto foram dadas sugestões de como o móvel poderia ficar melhor no ambiente.',
+      image: '/lovable-uploads/f8d8fc42-ad08-4bfa-8be8-c2508ff5a350.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Amanda Hineraski',
+      numberOfReviews: '2 avaliações',
+      text: 'Indico de olhos fechados! Equipe atenciosa, dedicada e detalhista, profissionais incríveis! Marcenaria completa, equipamentos de alta qualidade e tecnologia para garantir os melhores acabamentos.',
+      image: '/lovable-uploads/f8d8fc42-ad08-4bfa-8be8-c2508ff5a350.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Marcia Veridiane Sacchet',
+      numberOfReviews: '2 avaliações',
+      text: 'A Projetart é uma empresa com as quais nos identificamos muito, pela competência, seriedade, por desenvolver nossos projetos além do que imaginávamos e também pela ótima equipe de trabalho. Recomendamos sempre.',
+      image: '/lovable-uploads/1db5f7ab-ade3-400e-97ee-8c6658f793fb.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Geyson Souza',
+      numberOfReviews: '22 avaliações',
+      text: 'Encontrar profissionais que cumprem prazos e trabalham com respeito ao cliente é sempre um desafio. Fica minha total indicação à equipe da Projetart, profissionais sérios e comprometidos! Que venham os próximos pedidos!!!!!!',
+      image: '/lovable-uploads/1db5f7ab-ade3-400e-97ee-8c6658f793fb.png',
+      rating: 5,
+      date: 'uma semana atrás',
+      localGuide: true,
+      photos: 14
+    },
+    {
+      name: 'Thais Seyffert',
+      numberOfReviews: '3 avaliações',
+      text: 'Empresa incrível, desde o primeiro contato, produção, montagem, até o pós venda, esquipe dedicada para entregar tudo com excelência.',
+      image: '/lovable-uploads/84d12cfd-8b0b-498f-afdb-fe803ad6c44d.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Michele Meinhart de souza',
+      numberOfReviews: '1 avaliação',
+      text: 'Pessoal incrível, super profissional além de entregar um excelente trabalho, com móveis de qualidade. Super indico 👍',
+      image: '/lovable-uploads/84d12cfd-8b0b-498f-afdb-fe803ad6c44d.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Irineu Pitrovski',
+      numberOfReviews: '1 avaliação',
+      text: 'Recomendo, o trabalho é perfeito e de qualidade entrega dentro do prazo, produto excelente conforme solicitado.',
+      image: '/lovable-uploads/ab1a483a-0e16-4b8e-8463-b7a31b5db4e8.png',
+      rating: 5,
+      date: '6 dias atrás'
+    },
+    {
+      name: 'Valtemir Alegranzi',
+      numberOfReviews: '1 avaliação',
+      text: 'Já fiz vários projetos com a Projetart, e super indico, pois é uma empresa séria, de confiança e seus trabalhos são de primeira linha',
+      image: '/lovable-uploads/ab1a483a-0e16-4b8e-8463-b7a31b5db4e8.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Paulo Metzner',
+      text: 'Os móveis fabricados são de ótima qualidade. O atendimento é feito por profissionais qualificados e capacitados.',
+      image: '/lovable-uploads/29b27d3f-b799-4f25-88f8-709e5215097b.png',
+      rating: 5,
+      date: 'uma semana atrás',
+      localGuide: true,
+      photos: 427,
+      numberOfReviews: '128 avaliações'
+    },
+    {
+      name: 'Nilcéa Secconi',
+      numberOfReviews: '1 avaliação',
+      text: 'Atendimento atencioso! Na PROJETART, o sonho se torna realidade, com agilidade, segurança e confiança. Obrigada Robson e equipe!',
+      image: '/lovable-uploads/29b27d3f-b799-4f25-88f8-709e5215097b.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Evania Marostega Marostega',
+      numberOfReviews: '1 avaliação',
+      text: 'Atendimento muito bom, produtos de qualidade, somos clientes a mais de 5 anos Pontualidade na entrega.',
+      image: '/lovable-uploads/7565e45c-a634-4415-8e89-2abea97ee826.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Josias Correa',
+      numberOfReviews: '1 avaliação',
+      text: 'Muito boa, profissionalismo e muito dedicação a cada peça produzida, ambiente de qualidade e tecnologia envolvida.',
+      image: '/lovable-uploads/7565e45c-a634-4415-8e89-2abea97ee826.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Mentor Edson Santos',
+      numberOfReviews: '1 avaliação',
+      text: 'Recomendo demais, um excelente lugar, de fácil acesso e com um ótimo atendimento. Produtos de extrema qualidade.',
+      image: '/lovable-uploads/34156fd6-e5d0-451a-b4fb-243cdbd74680.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Silvana Dutra',
+      numberOfReviews: '1 avaliação',
+      text: 'Atendimento muito bom! Pessoal organizado, rápido na entrega e com qualidade. Recomendo',
+      image: '/lovable-uploads/34156fd6-e5d0-451a-b4fb-243cdbd74680.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+    {
+      name: 'Julio Klein',
+      numberOfReviews: '2 avaliações',
+      text: 'Experiência incrível, tudo maravilhoso, excelente atendimento, organizado e agilidade com produção e entrega.',
+      image: '/lovable-uploads/34156fd6-e5d0-451a-b4fb-243cdbd74680.png',
+      rating: 5,
+      date: 'uma semana atrás'
+    },
+  ];
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % reviews.length);
@@ -181,6 +190,9 @@ const Testimonials = () => {
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Veja o que nossos clientes estão dizendo sobre nós no Google
           </p>
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mt-2">
+            <span className="font-semibold text-wood-dark">5,0</span> <span className="text-yellow-400">★★★★★</span> <span className="text-neutral-600">59 avaliações</span>
+          </p>
           <a 
             href="https://www.google.com/search?q=projetart+moveis+sob+medida+rio+grande+do+sul#lrd=0x94f951122a4f8875:0x22a1733e38568c16,1,,,,,"
             target="_blank"
@@ -191,114 +203,82 @@ const Testimonials = () => {
           </a>
         </div>
 
-        {/* API Key Input (apenas para demonstração - em produção isso deveria estar no backend) */}
-        {!apiKey && (
-          <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mb-8">
-            <h3 className="text-lg font-semibold mb-2">Configurar API do Google Places</h3>
-            <p className="text-sm text-neutral-600 mb-3">
-              Para buscar avaliações reais, insira sua chave API do Google Places. 
-              (Em um ambiente de produção, isso deve ser configurado no servidor)
-            </p>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={apiKeyInput}
-                onChange={(e) => setApiKeyInput(e.target.value)}
-                placeholder="Chave API do Google Places"
-                className="flex-1 border border-neutral-300 rounded px-3 py-2"
-              />
-              <Button onClick={saveApiKey}>Salvar</Button>
-            </div>
-          </div>
-        )}
-
-        {isLoading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-wood-dark"></div>
-          </div>
-        ) : error ? (
-          <div className="text-center py-10">
-            <p className="text-red-500">Não foi possível carregar as avaliações. Por favor, tente novamente mais tarde.</p>
-            {apiKey && (
-              <Button 
-                onClick={fetchRealReviews} 
-                className="mt-4"
-                variant="outline"
-              >
-                Tentar novamente
-              </Button>
-            )}
-          </div>
-        ) : (
-          <div className="max-w-4xl mx-auto">
-            <Carousel className="mx-auto">
-              <CarouselContent>
-                {reviews.map((review, idx) => (
-                  <CarouselItem key={idx} className="md:basis-1/1">
-                    <Card className="border-0 shadow-xl bg-white overflow-hidden h-full">
-                      <CardContent className="p-8 md:p-10">
-                        <div className="text-center">
-                          <div className="flex items-center justify-center mb-4">
-                            <img
-                              src={review.image}
-                              alt={review.name}
-                              className="w-20 h-20 rounded-full object-cover border-4 border-wood-light"
-                            />
-                            <div className="ml-4 text-left">
+        <div className="max-w-4xl mx-auto">
+          <Carousel className="mx-auto">
+            <CarouselContent>
+              {reviews.map((review, idx) => (
+                <CarouselItem key={idx} className="md:basis-1/1">
+                  <Card className="border-0 shadow-xl bg-white overflow-hidden h-full">
+                    <CardContent className="p-8 md:p-10">
+                      <div className="text-center">
+                        <div className="flex items-center justify-center mb-4">
+                          <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-neutral-200 rounded-full text-2xl font-bold text-neutral-600">
+                            {review.name.charAt(0)}
+                          </div>
+                          <div className="ml-4 text-left">
+                            <div className="flex items-center">
                               <h4 className="text-lg font-semibold text-neutral-800">
                                 {review.name}
                               </h4>
-                              <p className="text-wood-dark font-medium">
-                                {review.location}
-                              </p>
+                              {review.localGuide && (
+                                <span className="ml-2 bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded">
+                                  Local Guide
+                                </span>
+                              )}
+                            </div>
+                            {review.numberOfReviews && (
                               <p className="text-neutral-500 text-sm">
-                                {review.date}
+                                {review.numberOfReviews}
+                                {review.photos && ` • ${review.photos} fotos`}
                               </p>
-                              <div className="flex mt-1">
-                                {[...Array(review.rating)].map((_, i) => (
-                                  <span key={i} className="text-yellow-400">★</span>
-                                ))}
-                              </div>
+                            )}
+                            <p className="text-neutral-500 text-sm">
+                              {review.date} <span className="ml-1 text-xs bg-gray-100 px-2 py-0.5 rounded">NOVA</span>
+                            </p>
+                            <div className="flex mt-1">
+                              {[...Array(review.rating)].map((_, i) => (
+                                <span key={i} className="text-yellow-400">★</span>
+                              ))}
                             </div>
                           </div>
-
-                          <blockquote className="text-xl md:text-xl text-neutral-700 italic mb-6 leading-relaxed">
-                            "{review.text}"
-                          </blockquote>
-
-                          <div className="mt-4">
-                            <img 
-                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png" 
-                              alt="Google" 
-                              className="h-6 mx-auto opacity-70" 
-                            />
-                          </div>
                         </div>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="hidden sm:block">
-                <CarouselPrevious className="left-1" />
-                <CarouselNext className="right-1" />
-              </div>
-            </Carousel>
 
-            {/* Dots Navigation for Mobile */}
-            <div className="flex justify-center items-center mt-6 space-x-2 sm:hidden">
-              {reviews.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-wood-dark' : 'bg-neutral-300'
-                  }`}
-                />
+                        <blockquote className="text-xl md:text-xl text-neutral-700 mb-6 leading-relaxed text-left">
+                          "{review.text}"
+                        </blockquote>
+
+                        <div className="mt-4">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png" 
+                            alt="Google" 
+                            className="h-6 mx-auto opacity-70" 
+                          />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
               ))}
+            </CarouselContent>
+            <div className="hidden sm:block">
+              <CarouselPrevious className="left-1" />
+              <CarouselNext className="right-1" />
             </div>
+          </Carousel>
+
+          {/* Dots Navigation for Mobile */}
+          <div className="flex justify-center items-center mt-6 space-x-2 sm:hidden">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToTestimonial(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? 'bg-wood-dark' : 'bg-neutral-300'
+                }`}
+              />
+            ))}
           </div>
-        )}
+        </div>
 
         <div className="mt-16 text-center">
           <div className="bg-white p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
@@ -325,4 +305,3 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
-
