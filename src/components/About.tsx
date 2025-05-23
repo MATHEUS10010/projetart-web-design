@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About = () => {
   return (
@@ -52,11 +53,15 @@ const About = () => {
             <div className="space-y-8">
               <Card className="border-0 shadow-lg overflow-hidden">
                 <CardContent className="p-0">
-                  <img
-                    src="/lovable-uploads/7145030f-93e4-4616-8a99-25ef98a62346.png"
-                    alt="Robson Jardel Schwarzer palestrando sobre móveis planejados"
-                    className="w-full h-80 object-cover"
-                  />
+                  <div className="w-full">
+                    <AspectRatio ratio={4/3} className="bg-muted">
+                      <img
+                        src="/lovable-uploads/7145030f-93e4-4616-8a99-25ef98a62346.png"
+                        alt="Robson Jardel Schwarzer palestrando sobre móveis planejados"
+                        className="w-full h-full object-contain"
+                      />
+                    </AspectRatio>
+                  </div>
                   <div className="p-6 bg-wood-gradient text-white">
                     <h3 className="text-xl font-semibold mb-2">Robson Jardel Schwarzer</h3>
                     <p className="text-sm opacity-90">Fundador e Diretor Criativo</p>
