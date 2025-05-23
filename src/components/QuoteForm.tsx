@@ -23,8 +23,10 @@ const formSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
   phone: z.string().min(10, { message: 'Telefone inválido' }),
   description: z.string().min(10, { message: 'Por favor, forneça mais detalhes sobre seu projeto' }),
-  budget: z.string().optional(),
-  areas: z.string().optional(),
+  budget: z.string({
+    required_error: "Por favor, selecione uma faixa de investimento",
+  }),
+  areas: z.string().min(1, { message: "Por favor, selecione pelo menos um ambiente" }),
 });
 
 const QuoteForm = () => {
@@ -62,6 +64,13 @@ const QuoteForm = () => {
         return [...prev, area];
       }
     });
+    
+    // Update the form field value whenever areas change
+    const areasString = selectedAreas.includes(area) 
+      ? selectedAreas.filter(item => item !== area).join(', ')
+      : [...selectedAreas, area].join(', ');
+      
+    form.setValue('areas', areasString);
   };
 
   // Format client information for WhatsApp and email
@@ -105,6 +114,15 @@ const QuoteForm = () => {
   };
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    // Form validation for selected areas
+    if (selectedAreas.length === 0) {
+      form.setError('areas', {
+        type: 'manual',
+        message: 'Selecione pelo menos um ambiente'
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -230,7 +248,7 @@ const QuoteForm = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm font-medium text-neutral-700">
-                            Valor Aproximado de Investimento
+                            Valor Aproximado de Investimento *
                           </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
@@ -254,7 +272,7 @@ const QuoteForm = () => {
                   {/* Ambientes desejados */}
                   <div>
                     <FormLabel className="text-sm font-medium text-neutral-700 mb-2 block">
-                      Ambientes Desejados
+                      Ambientes Desejados *
                     </FormLabel>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {areaOptions.map((area) => (
@@ -271,6 +289,11 @@ const QuoteForm = () => {
                         </div>
                       ))}
                     </div>
+                    {form.formState.errors.areas && (
+                      <p className="text-sm font-medium text-destructive mt-2">
+                        {form.formState.errors.areas.message}
+                      </p>
+                    )}
                   </div>
 
                   <FormField
