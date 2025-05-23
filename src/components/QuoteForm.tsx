@@ -161,11 +161,11 @@ const QuoteForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-16 bg-neutral-50">
+    <section id="orcamento" className="py-12 bg-neutral-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-3">
               Solicite Seu Orçamento
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
@@ -174,15 +174,15 @@ const QuoteForm = () => {
           </div>
 
           <Card className="shadow-xl border-0 bg-white">
-            <CardHeader className="bg-wood-gradient text-white rounded-t-lg">
+            <CardHeader className="bg-wood-gradient text-white rounded-t-lg py-3">
               <CardTitle className="text-2xl text-center">
                 Receba sua Proposta Gratuita
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 pt-1">
+            <CardContent className="p-4 pt-0">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 -mt-5">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-6">
                     <FormField
                       control={form.control}
                       name="name"
@@ -225,7 +225,7 @@ const QuoteForm = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
                       name="phone"
