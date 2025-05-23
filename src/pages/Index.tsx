@@ -9,7 +9,6 @@ import Process from '@/components/Process';
 import Testimonials from '@/components/Testimonials';
 import About from '@/components/About';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
   return (
@@ -23,7 +22,6 @@ const Index = () => {
       <Testimonials />
       <About />
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 };
