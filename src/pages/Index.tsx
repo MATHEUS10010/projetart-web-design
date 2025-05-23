@@ -20,7 +20,7 @@ const Index = () => {
         <QuoteForm />
         <Portfolio />
         <Services />
-        <div className="-mt-24">
+        <div className="-mt-32">
           <Process />
         </div>
         <Testimonials />
