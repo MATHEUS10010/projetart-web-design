@@ -53,15 +53,16 @@ const Hero = () => {
             Solicitar Orçamento
           </Button>
           
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
-            onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Ver Projetos
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <a href="#portfolio">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+            >
+              Ver Projetos
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </a>
         </div>
 
         {/* Stats section - Added mb-16 for mobile to prevent overlap with scroll indicator */}
