@@ -179,10 +179,10 @@ const QuoteForm = () => {
                 Receba sua Proposta Gratuita
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 pt-3">
+            <CardContent className="p-6 pt-1">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 -mt-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 -mt-5">
                     <FormField
                       control={form.control}
                       name="name"
