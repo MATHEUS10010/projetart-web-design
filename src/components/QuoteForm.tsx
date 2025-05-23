@@ -54,6 +54,8 @@ const QuoteForm = () => {
     { label: 'Salas', value: 'Salas' },
     { label: 'Banheiros', value: 'Banheiros' },
     { label: 'Closets', value: 'Closets' },
+    { label: 'Apartamento/Casa Completa', value: 'Apartamento/Casa Completa' },
+    { label: 'Comercial', value: 'Comercial' },
   ];
 
   const handleSelectArea = (area: string) => {

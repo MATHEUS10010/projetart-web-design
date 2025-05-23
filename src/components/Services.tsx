@@ -34,11 +34,6 @@ const Services = () => {
       icon: '🚿',
       title: 'Banheiros Planejados',
       description: 'Móveis sob medida para banheiros, com foco na resistência à umidade e aproveitamento inteligente do espaço disponível.'
-    },
-    {
-      icon: '🏡',
-      title: 'Apartamento/Casa Completa',
-      description: 'Projeto completo para todos os ambientes da sua residência, garantindo harmonia e integração entre todos os espaços.'
     }
   ];
 
@@ -62,11 +57,6 @@ const Services = () => {
       icon: '☕',
       title: 'Cafeterias e Restaurantes',
       description: 'Mobiliário planejado para estabelecimentos gastronômicos, unindo praticidade operacional e ambiente aconchegante para seus clientes.'
-    },
-    {
-      icon: '🏬',
-      title: 'Comercial Completo',
-      description: 'Projeto completo para qualquer ambiente comercial, desde a recepção até as áreas administrativas, garantindo identidade visual e funcionalidade.'
     }
   ];
 
