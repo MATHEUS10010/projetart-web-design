@@ -20,10 +20,14 @@ const Index = () => {
         <QuoteForm />
         <Portfolio />
         <Services />
-        <Process />
+        <div className="-mt-8">
+          <Process />
+        </div>
         <Testimonials />
         <About />
-        <FinalQuote />
+        <div className="-mt-8">
+          <FinalQuote />
+        </div>
       </div>
       <Footer />
     </div>
