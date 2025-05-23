@@ -97,18 +97,17 @@ const QuoteForm = () => {
 - Descrição do projeto: ${data.description}`;
   };
 
-  // Send information to WhatsApp
+  // Send information to WhatsApp - Updated to work on mobile
   const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
     const formattedMessage = formatClientInfo(data);
-    // Format the number correctly for Brazil: add country code 55 and remove any non-digit characters
     const whatsappNumber = '5581993122958'; // Brazilian format with country code 55
     const encodedMessage = encodeURIComponent(formattedMessage);
     
-    // Use the API URL format instead of wa.me to open directly in WhatsApp
+    // Direct link to WhatsApp that works consistently on all devices
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
     
-    // Open WhatsApp in a new tab
-    window.open(whatsappUrl, '_blank');
+    // Use window.location.href for direct redirection instead of window.open
+    window.location.href = whatsappUrl;
   };
 
   // Function to simulate sending email (in a real implementation, this would call an API)
@@ -136,15 +135,10 @@ const QuoteForm = () => {
       // Send to email (in this example, we're just simulating it)
       await sendToEmail(data);
       
-      // Send to WhatsApp
+      // Directly redirect to WhatsApp without showing toast
       sendToWhatsApp(data);
       
-      toast({
-        title: "Proposta Enviada!",
-        description: "Entraremos em contato em até 24 horas. Obrigado!",
-      });
-      
-      // Reset form
+      // Reset form (this will only happen if the WhatsApp redirect is blocked)
       form.reset();
       setSelectedAreas([]);
     } catch (error) {
@@ -154,7 +148,6 @@ const QuoteForm = () => {
         description: "Ocorreu um erro ao enviar sua proposta. Por favor, tente novamente.",
         variant: "destructive",
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
