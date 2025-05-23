@@ -11,7 +11,7 @@ const Portfolio = () => {
     {
       id: 1,
       title: 'Cozinha Moderna Integrada',
-      location: 'São Paulo, SP',
+      location: 'Três de Maio, RS',
       area: '15m²',
       type: 'Cozinha Planejada',
       image: '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
@@ -20,7 +20,7 @@ const Portfolio = () => {
     {
       id: 2,
       title: 'Quarto Planejado com Closet',
-      location: 'Santos, SP',
+      location: 'Três de Maio, RS',
       area: '18m²',
       type: 'Quarto e Closet',
       image: '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
@@ -29,7 +29,7 @@ const Portfolio = () => {
     {
       id: 3,
       title: 'Consultório Odontológico',
-      location: 'Guarulhos, SP',
+      location: 'Três de Maio, RS',
       area: '12m²',
       type: 'Consultório',
       image: '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png',
@@ -38,7 +38,7 @@ const Portfolio = () => {
     {
       id: 4,
       title: 'Sala de Estar Sofisticada',
-      location: 'Osasco, SP',
+      location: 'Três de Maio, RS',
       area: '25m²',
       type: 'Sala de Estar',
       image: '/lovable-uploads/0d6c0403-1e66-40e8-b715-4a91fdae41c4.png',
@@ -47,7 +47,7 @@ const Portfolio = () => {
     {
       id: 5,
       title: 'Cozinha Gourmet com Bancada',
-      location: 'Barueri, SP',
+      location: 'Três de Maio, RS',
       area: '20m²',
       type: 'Cozinha Gourmet',
       image: '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
@@ -56,7 +56,7 @@ const Portfolio = () => {
     {
       id: 6,
       title: 'Quarto de Casal Completo',
-      location: 'São Caetano, SP',
+      location: 'Três de Maio, RS',
       area: '16m²',
       type: 'Dormitório',
       image: '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
