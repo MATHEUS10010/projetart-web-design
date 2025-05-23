@@ -32,7 +32,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-          Móveis Planejados{' '}
+          Móveis Planejados Sob Medida{' '}
           <span className="block text-white">
             que Transformam Seu Espaço
           </span>
