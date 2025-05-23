@@ -42,8 +42,8 @@ const Services = () => {
     {
       id: "escritorios",
       title: "Escritórios",
-      description: "Espaços corporativos planejados que combinam funcionalidade e estética para criar ambientes de trabalho produtivos.",
-      features: ["Mobiliário ergonômico", "Soluções para reuniões", "Organização de cabos", "Recepção personalizada"],
+      description: "Espaços corporativos planejados que combinam funcionalidade e estética para criar ambientes de trabalho produtivos e elegantes.",
+      features: ["Mobiliário ergonômico", "Soluções para reuniões", "Organização de cabos", "Recepção personalizada", "Estações de trabalho otimizadas"],
       icon: <Briefcase className="w-10 h-10 text-wood-medium" />
     },
     {
@@ -87,7 +87,7 @@ const Services = () => {
               value="comercial" 
               className="flex items-center gap-2 px-6 py-3 data-[state=active]:bg-wood-medium data-[state=active]:text-white rounded-r-md"
             >
-              <Bath size={20} />
+              <Briefcase size={20} />
               <span>Comercial</span>
             </TabsTrigger>
           </TabsList>
