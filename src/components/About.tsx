@@ -92,36 +92,6 @@ const About = () => {
               </div>
             </div>
           </div>
-
-          <div className="mt-4 bg-wood-gradient p-6 rounded-2xl text-white text-center">
-            <h3 className="text-2xl font-bold mb-3">
-              Transformamos Espaços, Criamos Memórias
-            </h3>
-            <p className="text-lg mb-4 max-w-3xl mx-auto">
-              Cada projeto é uma oportunidade de criar algo único e especial. Nossa missão é transformar 
-              seu espaço em um ambiente que reflita sua personalidade e atenda perfeitamente às suas necessidades.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <h4 className="font-semibold mb-1">Missão</h4>
-                <p className="text-sm opacity-90">
-                  Criar móveis planejados que transformem espaços e melhorem a qualidade de vida dos nossos clientes.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-1">Visão</h4>
-                <p className="text-sm opacity-90">
-                  Ser referência em móveis planejados, reconhecida pela excelência em design e qualidade.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-1">Valores</h4>
-                <p className="text-sm opacity-90">
-                  Qualidade, inovação, transparência e compromisso com a satisfação do cliente.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
