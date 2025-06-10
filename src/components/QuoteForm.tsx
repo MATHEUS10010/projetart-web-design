@@ -25,6 +25,9 @@ const formSchema = z.object({
   budget: z.string({
     required_error: "Por favor, selecione uma faixa de investimento",
   }),
+  contactTime: z.string({
+    required_error: "Por favor, selecione um horário de contato",
+  }),
   areas: z.string().min(1, { message: "Por favor, selecione pelo menos um ambiente" }),
 });
 
@@ -41,6 +44,7 @@ const QuoteForm = () => {
       phone: '',
       description: '',
       budget: '',
+      contactTime: '',
       areas: '',
     },
   });
@@ -91,7 +95,8 @@ const QuoteForm = () => {
 - Tenho interesse em um projeto de móveis planejados e gostaria de receber uma proposta personalizada.
 
 - Faixa de investimento: ${budget}
-- "Ambientes desejados": ${areas}
+- Melhor horário para contato: ${data.contactTime}
+- Ambientes desejados: ${areas}
 - Descrição do projeto: ${data.description}`;
   };
 
@@ -230,7 +235,7 @@ const QuoteForm = () => {
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="budget"
@@ -257,6 +262,32 @@ const QuoteForm = () => {
                       )}
                     />
                   </div>
+
+                  <FormField
+                    control={form.control}
+                    name="contactTime"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-neutral-700">
+                          Melhor horário para contato *
+                        </FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12">
+                              <SelectValue placeholder="Selecione um horário" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Manhã">Manhã</SelectItem>
+                            <SelectItem value="Horário de Almoço">Horário de Almoço</SelectItem>
+                            <SelectItem value="Tarde">Tarde</SelectItem>
+                            <SelectItem value="Noite">Noite</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
                   <div>
                     <FormLabel className="text-sm font-medium text-neutral-700 mb-2 block">
@@ -323,4 +354,5 @@ const QuoteForm = () => {
 };
 
 export default QuoteForm;
+
 
