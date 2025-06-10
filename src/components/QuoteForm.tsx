@@ -66,7 +66,6 @@ const QuoteForm = () => {
       }
     });
     
-    // Update the form field value whenever areas change
     const areasString = selectedAreas.includes(area) 
       ? selectedAreas.filter(item => item !== area).join(', ')
       : [...selectedAreas, area].join(', ');
@@ -98,19 +97,13 @@ const QuoteForm = () => {
 
   const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
     const formattedMessage = formatClientInfo(data);
-    const whatsappNumber = '5581993122958'; // Brazilian format with country code 55
+    const whatsappNumber = '5581993122958';
     const encodedMessage = encodeURIComponent(formattedMessage);
-    
-    // Try using the WhatsApp direct protocol first (whatsapp://)
     const whatsappDeepLink = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
-    
-    // Use window.location.href for direct redirection
     window.location.href = whatsappDeepLink;
-    
-    // Fallback to the web version after a short delay if the app didn't open
+
     setTimeout(() => {
       const currentURL = window.location.href;
-      // If we're still on the same page after trying the deep link, use the web version
       if (currentURL.includes(window.location.pathname)) {
         const webWhatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
         window.location.href = webWhatsappUrl;
@@ -118,14 +111,12 @@ const QuoteForm = () => {
     }, 1000);
   };
 
-  // Function to simulate sending email (in a real implementation, this would call an API)
   const sendToEmail = async (data: z.infer<typeof formSchema>) => {
     console.log('Sending email to projetart@projetart.com with data:', data);
     return new Promise(resolve => setTimeout(resolve, 1000));
   };
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    // Form validation for selected areas
     if (selectedAreas.length === 0) {
       form.setError('areas', {
         type: 'manual',
@@ -137,16 +128,9 @@ const QuoteForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Add selected areas to data
       data.areas = selectedAreas.join(', ');
-
-      // Send to email (in this example, we're just simulating it)
       await sendToEmail(data);
-      
-      // Directly redirect to WhatsApp app
       sendToWhatsApp(data);
-      
-      // Reset form (this will only happen if the WhatsApp redirect is blocked)
       form.reset();
       setSelectedAreas([]);
     } catch (error) {
@@ -253,7 +237,7 @@ const QuoteForm = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm font-medium text-neutral-700">
-                            Valor Aproximado de Investimento *
+                            Quanto quer investir no seu projeto? *
                           </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
@@ -274,7 +258,6 @@ const QuoteForm = () => {
                     />
                   </div>
 
-                  {/* Ambientes desejados */}
                   <div>
                     <FormLabel className="text-sm font-medium text-neutral-700 mb-2 block">
                       Ambientes Desejados *
@@ -340,3 +323,4 @@ const QuoteForm = () => {
 };
 
 export default QuoteForm;
+
