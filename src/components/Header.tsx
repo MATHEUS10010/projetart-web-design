@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -10,7 +9,6 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -21,7 +19,7 @@ const Header = () => {
     { label: 'Serviços', href: '#servicos' },
     { label: 'Processo', href: '#processo' },
     { label: 'Depoimentos', href: '#depoimentos' },
-    { label: 'Sobre', href: '#sobre' },
+    { label: 'Sobre', href: '#quem-somos' },
     { label: 'Contato', href: '#contato' }
   ];
 
