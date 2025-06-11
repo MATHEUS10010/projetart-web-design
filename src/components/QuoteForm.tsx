@@ -102,7 +102,7 @@ const QuoteForm = () => {
 
   const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
     const formattedMessage = formatClientInfo(data);
-    const whatsappNumber = '5581993122958';
+    const whatsappNumber = '5555999633435';
     const encodedMessage = encodeURIComponent(formattedMessage);
     const whatsappDeepLink = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
     window.location.href = whatsappDeepLink;
