@@ -15,7 +15,7 @@ const About = () => {
               
               <div className="space-y-3 text-lg text-neutral-600 leading-relaxed">
                 <p>
-                  Há mais de <strong className="text-wood-dark">10 anos</strong> no mercado, a Projetart se dedica 
+                  Há mais de <strong className="text-wood-dark">12 anos</strong> no mercado, a Projetart se dedica 
                   a criar móveis planejados sob medida que transformam espaços e realizam sonhos. Nossa paixão 
                   é desenvolver projetos únicos que combinam funcionalidade, beleza e qualidade excepcional.
                 </p>
@@ -35,7 +35,7 @@ const About = () => {
 
               <div className="grid grid-cols-3 gap-6 mt-4">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-wood-dark mb-1">10+</div>
+                  <div className="text-3xl font-bold text-wood-dark mb-1">12+</div>
                   <div className="text-sm text-neutral-600">Anos de Experiência</div>
                 </div>
                 <div className="text-center">
@@ -54,8 +54,8 @@ const About = () => {
                 <CardContent className="p-0">
                   <div className="flex justify-center bg-neutral-900 p-4">
                     <img
-                      src="/lovable-uploads/54e60df7-32b4-4795-8074-6be725d18640.png"
-                      alt="Projetart Móveis Sob Medida - 10 Anos"
+                      src="/lovable-uploads/bb6c485f-205c-407b-9bf5-502da9be20f1.png"
+                      alt="Projetart Móveis Sob Medida - 12 Anos"
                       className="w-auto max-h-[400px] object-contain"
                     />
                   </div>
