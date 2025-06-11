@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogOverlay,
 } from '@/components/ui/dialog';
 
 const Portfolio = () => {
@@ -118,60 +117,58 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Modal de Detalhes */}
+        {/* Modal com fundo escuro e rolagem interna */}
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          {selectedProject && (
-            <DialogOverlay className="fixed inset-0 bg-black/50 z-40" />
-          )}
-          
-          <DialogContent className="relative z-50 max-w-5xl p-0 max-h-screen overflow-y-auto">
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="fixed top-4 right-4 z-[9999] bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition md:top-6 md:right-6"
-              aria-label="Fechar"
-            >
-              ✕
-            </button>
+          <DialogContent className="fixed inset-0 z-[9999] bg-black/60 grid place-items-center p-4">
+            <div className="relative bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition"
+                aria-label="Fechar"
+              >
+                ✕
+              </button>
 
-            {selectedProject && (
-              <>
-                <DialogHeader className="px-6 pt-6">
-                  <DialogTitle className="text-2xl font-bold">
-                    {projects.find((p) => p.id === selectedProject)?.title}
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="w-full h-[80vh] bg-black flex items-center justify-center">
-                  <img
-                    src={projects.find((p) => p.id === selectedProject)?.image}
-                    alt={projects.find((p) => p.id === selectedProject)?.title}
-                    className="w-auto max-h-full object-contain"
-                  />
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
-                  <div>
-                    <span className="font-semibold text-neutral-700">Local:</span>
-                    <p className="text-neutral-600">
-                      {projects.find((p) => p.id === selectedProject)?.location}
-                    </p>
+              {selectedProject && (
+                <>
+                  <DialogHeader className="px-6 pt-6">
+                    <DialogTitle className="text-2xl font-bold">
+                      {projects.find((p) => p.id === selectedProject)?.title}
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="w-full bg-black flex items-center justify-center">
+                    <img
+                      src={projects.find((p) => p.id === selectedProject)?.image}
+                      alt={projects.find((p) => p.id === selectedProject)?.title}
+                      className="w-auto max-h-[60vh] object-contain"
+                    />
                   </div>
-                  <div>
-                    <span className="font-semibold text-neutral-700">Área:</span>
-                    <p className="text-neutral-600">
-                      {projects.find((p) => p.id === selectedProject)?.area}
-                    </p>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
+                    <div>
+                      <span className="font-semibold text-neutral-700">Local:</span>
+                      <p className="text-neutral-600">
+                        {projects.find((p) => p.id === selectedProject)?.location}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-neutral-700">Área:</span>
+                      <p className="text-neutral-600">
+                        {projects.find((p) => p.id === selectedProject)?.area}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-neutral-700">Tipo:</span>
+                      <p className="text-neutral-600">
+                        {projects.find((p) => p.id === selectedProject)?.type}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <span className="font-semibold text-neutral-700">Tipo:</span>
-                    <p className="text-neutral-600">
-                      {projects.find((p) => p.id === selectedProject)?.type}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-neutral-700 leading-relaxed px-6 pb-6">
-                  {projects.find((p) => p.id === selectedProject)?.description}
-                </p>
-              </>
-            )}
+                  <p className="text-neutral-700 leading-relaxed px-6 pb-6">
+                    {projects.find((p) => p.id === selectedProject)?.description}
+                  </p>
+                </>
+              )}
+            </div>
           </DialogContent>
         </Dialog>
       </div>
@@ -180,6 +177,7 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
 
 
 
