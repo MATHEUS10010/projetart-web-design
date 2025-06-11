@@ -120,7 +120,9 @@ const Portfolio = () => {
 
         {/* Modal de Detalhes */}
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogOverlay className="fixed inset-0 bg-black/50 z-40" />
+          {selectedProject && (
+            <DialogOverlay className="fixed inset-0 bg-black/50 z-40" />
+          )}
           
           <DialogContent className="relative z-50 max-w-5xl p-0 max-h-screen overflow-y-auto">
             <button
