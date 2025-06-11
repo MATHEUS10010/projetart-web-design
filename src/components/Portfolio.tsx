@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -91,7 +85,7 @@ const Portfolio = () => {
               key={project.id}
               className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl border-0 overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => setSelectedProject(project.id)}
+              onClick={() => setSelectedProject(project)}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -117,10 +111,10 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Modal corrigido */}
-        <div className="relative">
-          <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-            <DialogContent className="absolute top-12 left-1/2 -translate-x-1/2 z-[9999] bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg p-0">
+        {/* Modal manual sem bug */}
+        {selectedProject && (
+          <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="relative bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition"
@@ -129,57 +123,46 @@ const Portfolio = () => {
                 ✕
               </button>
 
-              {selectedProject && (
-                <>
-                  <DialogHeader className="px-6 pt-6">
-                    <DialogTitle className="text-2xl font-bold">
-                      {projects.find(p => p.id === selectedProject)?.title}
-                    </DialogTitle>
-                  </DialogHeader>
+              <div className="px-6 pt-6">
+                <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
+              </div>
 
-                  <div className="w-full bg-black flex items-center justify-center">
-                    <img
-                      src={projects.find(p => p.id === selectedProject)?.image}
-                      alt={projects.find(p => p.id === selectedProject)?.title}
-                      className="w-auto max-h-[60vh] object-contain mx-auto"
-                    />
-                  </div>
+              <div className="w-full bg-black flex items-center justify-center">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-auto max-h-[60vh] object-contain mx-auto"
+                />
+              </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
-                    <div>
-                      <span className="font-semibold text-neutral-700">Local:</span>
-                      <p className="text-neutral-600">
-                        {projects.find(p => p.id === selectedProject)?.location}
-                      </p>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-neutral-700">Área:</span>
-                      <p className="text-neutral-600">
-                        {projects.find(p => p.id === selectedProject)?.area}
-                      </p>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-neutral-700">Tipo:</span>
-                      <p className="text-neutral-600">
-                        {projects.find(p => p.id === selectedProject)?.type}
-                      </p>
-                    </div>
-                  </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
+                <div>
+                  <span className="font-semibold text-neutral-700">Local:</span>
+                  <p className="text-neutral-600">{selectedProject.location}</p>
+                </div>
+                <div>
+                  <span className="font-semibold text-neutral-700">Área:</span>
+                  <p className="text-neutral-600">{selectedProject.area}</p>
+                </div>
+                <div>
+                  <span className="font-semibold text-neutral-700">Tipo:</span>
+                  <p className="text-neutral-600">{selectedProject.type}</p>
+                </div>
+              </div>
 
-                  <p className="text-neutral-700 leading-relaxed px-6 pb-6">
-                    {projects.find(p => p.id === selectedProject)?.description}
-                  </p>
-                </>
-              )}
-            </DialogContent>
-          </Dialog>
-        </div>
+              <p className="text-neutral-700 leading-relaxed px-6 pb-6">
+                {selectedProject.description}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
 export default Portfolio;
+
 
 
 
