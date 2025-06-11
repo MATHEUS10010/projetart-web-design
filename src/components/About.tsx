@@ -54,7 +54,7 @@ const About = () => {
                   <img
                     src="/lovable-uploads/bb6c485f-205c-407b-9bf5-502da9be20f1.png"
                     alt="Projetart Móveis Sob Medida - 12 Anos"
-                    className="w-auto max-h-[400px] object-contain rounded-xl shadow-md"
+                    className="mx-auto w-full max-w-sm rounded-xl shadow-md"
                   />
                 </CardContent>
               </Card>
@@ -95,4 +95,5 @@ const About = () => {
 };
 
 export default About;
+
 
