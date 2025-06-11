@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-bold mb-4 text-wood-light">Projetart - Móveis sob medida</h3>
             <p className="text-neutral-300 mb-6 leading-relaxed">
-              Móveis planejados sob medida com mais de 12 anos de experiência. 
+              Móveis planejados sob medida com mais de 10 anos de experiência. 
               Transformamos espaços com qualidade e design exclusivo.
             </p>
             <div className="flex space-x-4">
