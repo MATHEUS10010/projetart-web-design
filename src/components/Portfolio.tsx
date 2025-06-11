@@ -106,4 +106,65 @@ const Portfolio = () => {
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-neutral-800 mb-2">
                   {project.title}
+                </h3>
+                <p className="text-wood-dark font-medium mb-2">{project.type}</p>
+                <div className="flex justify-between text-sm text-neutral-600">
+                  <span>{project.location}</span>
+                  <span>{project.area}</span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Modal de Detalhes */}
+        <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
+          <DialogContent className="max-w-5xl p-0 overflow-hidden">
+            {selectedProject && (
+              <>
+                <DialogHeader className="px-6 pt-6">
+                  <DialogTitle className="text-2xl font-bold">
+                    {projects.find((p) => p.id === selectedProject)?.title}
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="w-full h-[80vh] bg-black flex items-center justify-center">
+                  <img
+                    src={projects.find((p) => p.id === selectedProject)?.image}
+                    alt={projects.find((p) => p.id === selectedProject)?.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
+                  <div>
+                    <span className="font-semibold text-neutral-700">Local:</span>
+                    <p className="text-neutral-600">
+                      {projects.find((p) => p.id === selectedProject)?.location}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-neutral-700">Área:</span>
+                    <p className="text-neutral-600">
+                      {projects.find((p) => p.id === selectedProject)?.area}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-neutral-700">Tipo:</span>
+                    <p className="text-neutral-600">
+                      {projects.find((p) => p.id === selectedProject)?.type}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-neutral-700 leading-relaxed px-6 pb-6">
+                  {projects.find((p) => p.id === selectedProject)?.description}
+                </p>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;
 
