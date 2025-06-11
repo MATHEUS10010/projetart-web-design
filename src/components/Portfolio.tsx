@@ -117,7 +117,7 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Modal com fundo escuro e rolagem interna */}
+        {/* Modal */}
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
           <DialogContent className="fixed inset-0 z-[9999] bg-black/60 grid place-items-center p-4">
             <div className="relative bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
@@ -133,38 +133,41 @@ const Portfolio = () => {
                 <>
                   <DialogHeader className="px-6 pt-6">
                     <DialogTitle className="text-2xl font-bold">
-                      {projects.find((p) => p.id === selectedProject)?.title}
+                      {projects.find(p => p.id === selectedProject)?.title}
                     </DialogTitle>
                   </DialogHeader>
+
                   <div className="w-full bg-black flex items-center justify-center">
                     <img
-                      src={projects.find((p) => p.id === selectedProject)?.image}
-                      alt={projects.find((p) => p.id === selectedProject)?.title}
-                      className="w-auto max-h-[60vh] object-contain"
+                      src={projects.find(p => p.id === selectedProject)?.image}
+                      alt={projects.find(p => p.id === selectedProject)?.title}
+                      className="w-auto max-h-[60vh] object-contain mx-auto"
                     />
                   </div>
+
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
                     <div>
                       <span className="font-semibold text-neutral-700">Local:</span>
                       <p className="text-neutral-600">
-                        {projects.find((p) => p.id === selectedProject)?.location}
+                        {projects.find(p => p.id === selectedProject)?.location}
                       </p>
                     </div>
                     <div>
                       <span className="font-semibold text-neutral-700">Área:</span>
                       <p className="text-neutral-600">
-                        {projects.find((p) => p.id === selectedProject)?.area}
+                        {projects.find(p => p.id === selectedProject)?.area}
                       </p>
                     </div>
                     <div>
                       <span className="font-semibold text-neutral-700">Tipo:</span>
                       <p className="text-neutral-600">
-                        {projects.find((p) => p.id === selectedProject)?.type}
+                        {projects.find(p => p.id === selectedProject)?.type}
                       </p>
                     </div>
                   </div>
+
                   <p className="text-neutral-700 leading-relaxed px-6 pb-6">
-                    {projects.find((p) => p.id === selectedProject)?.description}
+                    {projects.find(p => p.id === selectedProject)?.description}
                   </p>
                 </>
               )}
