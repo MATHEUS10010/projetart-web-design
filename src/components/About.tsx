@@ -54,7 +54,7 @@ const About = () => {
                 <CardContent className="p-4">
                   <div className="flex justify-center">
                     <img
-                      src="/lovable-uploads/50d690b1-9f9b-46e7-91ae-988ede5bb029.png"
+                      src="/lovable-uploads/0b1ce398-84a7-46b9-94c7-cd0014311722.png"
                       alt="Projetart Móveis Sob Medida - 12 Anos"
                       className="w-auto max-h-[400px] object-contain"
                     />
