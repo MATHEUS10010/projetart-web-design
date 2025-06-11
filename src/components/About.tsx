@@ -12,20 +12,20 @@ const About = () => {
               <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-3">
                 Sobre a Projetart
               </h2>
-              
+
               <div className="space-y-3 text-lg text-neutral-600 leading-relaxed">
                 <p>
                   Há mais de <strong className="text-wood-dark">12 anos</strong> no mercado, a Projetart se dedica 
                   a criar móveis planejados sob medida que transformam espaços e realizam sonhos. Nossa paixão 
                   é desenvolver projetos únicos que combinam funcionalidade, beleza e qualidade excepcional.
                 </p>
-                
+
                 <p>
                   Acreditamos que cada cliente é único, assim como suas necessidades e preferências. 
                   Por isso, oferecemos um <strong className="text-wood-dark">atendimento personalizado</strong> desde 
                   a primeira conversa até a entrega final do projeto, sempre priorizando a excelência em cada detalhe.
                 </p>
-                
+
                 <p>
                   Nosso compromisso com o <strong className="text-wood-dark">alto padrão de acabamento</strong> e 
                   a utilização de materiais premium garantem que seus móveis durem por muitos anos, 
@@ -52,7 +52,7 @@ const About = () => {
             <div className="space-y-4">
               <Card className="border-0 shadow-lg overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="flex justify-center bg-neutral-900 p-4">
+                  <div className="flex justify-center p-4">
                     <img
                       src="/lovable-uploads/bb6c485f-205c-407b-9bf5-502da9be20f1.png"
                       alt="Projetart Móveis Sob Medida - 12 Anos"
