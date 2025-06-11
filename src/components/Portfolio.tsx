@@ -119,7 +119,7 @@ const Portfolio = () => {
 
         {/* Modal */}
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="fixed inset-0 z-[9999] bg-black/60 grid place-items-center p-4">
+          <DialogContent className="absolute top-12 left-1/2 -translate-x-1/2 z-[9999] bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg p-0">
             <div className="relative bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
               <button
                 onClick={() => setSelectedProject(null)}
