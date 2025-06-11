@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogOverlay,
 } from '@/components/ui/dialog';
 
 const Portfolio = () => {
@@ -119,7 +120,9 @@ const Portfolio = () => {
 
         {/* Modal de Detalhes */}
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="relative max-w-5xl p-0 max-h-screen overflow-y-auto">
+          <DialogOverlay className="fixed inset-0 bg-black/50 z-40" />
+          
+          <DialogContent className="relative z-50 max-w-5xl p-0 max-h-screen overflow-y-auto">
             <button
               onClick={() => setSelectedProject(null)}
               className="fixed top-4 right-4 z-[9999] bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition md:top-6 md:right-6"
@@ -175,5 +178,6 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
 
 
