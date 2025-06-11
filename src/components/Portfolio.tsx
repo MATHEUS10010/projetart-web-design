@@ -117,10 +117,10 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Modal */}
-        <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="absolute top-12 left-1/2 -translate-x-1/2 z-[9999] bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg p-0">
-            <div className="relative bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+        {/* Modal corrigido */}
+        <div className="relative">
+          <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
+            <DialogContent className="absolute top-12 left-1/2 -translate-x-1/2 z-[9999] bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg p-0">
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition"
@@ -171,15 +171,16 @@ const Portfolio = () => {
                   </p>
                 </>
               )}
-            </div>
-          </DialogContent>
-        </Dialog>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Portfolio;
+
 
 
 
