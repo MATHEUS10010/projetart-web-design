@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About = () => {
   return (
@@ -50,12 +49,12 @@ const About = () => {
             </div>
 
             <div className="space-y-4">
-              <Card className="border-0 shadow-lg overflow-hidden">
+              <Card className="border-0 shadow-lg overflow-hidden bg-white">
                 <CardContent className="p-0">
                   <img
-                    src="/lovable-uploads/c720efc3-b2be-40bb-aaf5-4ffde0fef5f8.png"
-                    alt="Projetart Móveis Sob Medida - 12 Anos"
-                    className="w-full h-auto object-cover rounded-lg"
+                    src="/lovable-uploads/Logo projetart - 12 anos.png"
+                    alt="Logo Projetart - 12 Anos"
+                    className="w-full h-[260px] object-contain rounded-lg bg-white"
                   />
                 </CardContent>
               </Card>
