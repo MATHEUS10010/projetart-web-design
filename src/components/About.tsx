@@ -50,15 +50,13 @@ const About = () => {
             </div>
 
             <div className="space-y-4">
-              <Card className="border-0 shadow-lg overflow-hidden bg-white">
-                <CardContent className="p-6 bg-white">
-                  <div className="flex justify-center bg-white">
-                    <img
-                      src="/lovable-uploads/8bbc2f9a-f078-4d88-8ee4-eddd964cb8dd.png"
-                      alt="Projetart Móveis Sob Medida - 12 Anos"
-                      className="w-full max-w-[280px] h-auto object-contain"
-                    />
-                  </div>
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <CardContent className="p-0">
+                  <img
+                    src="/lovable-uploads/c720efc3-b2be-40bb-aaf5-4ffde0fef5f8.png"
+                    alt="Projetart Móveis Sob Medida - 12 Anos"
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
                 </CardContent>
               </Card>
 
