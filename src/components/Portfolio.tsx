@@ -119,7 +119,15 @@ const Portfolio = () => {
 
         {/* Modal de Detalhes */}
         <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-5xl p-0 overflow-hidden">
+          <DialogContent className="relative max-w-5xl p-0 max-h-screen overflow-y-auto">
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="fixed top-4 right-4 z-[9999] bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition md:top-6 md:right-6"
+              aria-label="Fechar"
+            >
+              ✕
+            </button>
+
             {selectedProject && (
               <>
                 <DialogHeader className="px-6 pt-6">
@@ -131,7 +139,7 @@ const Portfolio = () => {
                   <img
                     src={projects.find((p) => p.id === selectedProject)?.image}
                     alt={projects.find((p) => p.id === selectedProject)?.title}
-                    className="w-full h-full object-contain"
+                    className="w-auto max-h-full object-contain"
                   />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
@@ -167,4 +175,5 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
 
