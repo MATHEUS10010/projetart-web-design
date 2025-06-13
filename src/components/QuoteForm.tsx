@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -5,13 +7,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { 
+import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage 
+  FormMessage
 } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -22,12 +24,8 @@ const formSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
   phone: z.string().min(10, { message: 'Telefone inválido' }),
   description: z.string().min(10, { message: 'Por favor, forneça mais detalhes sobre seu projeto' }),
-  budget: z.string({
-    required_error: "Por favor, selecione uma faixa de investimento",
-  }),
-  contactTime: z.string({
-    required_error: "Por favor, selecione um horário de contato",
-  }),
+  budget: z.string({ required_error: "Por favor, selecione uma faixa de investimento" }),
+  contactTime: z.string({ required_error: "Por favor, selecione um horário de contato" }),
   areas: z.string().min(1, { message: "Por favor, selecione pelo menos um ambiente" }),
 });
 
@@ -69,25 +67,25 @@ const QuoteForm = () => {
         return [...prev, area];
       }
     });
-    
-    const areasString = selectedAreas.includes(area) 
+
+    const areasString = selectedAreas.includes(area)
       ? selectedAreas.filter(item => item !== area).join(', ')
       : [...selectedAreas, area].join(', ');
-      
+
     form.setValue('areas', areasString);
   };
 
   const formatClientInfo = (data: z.infer<typeof formSchema>) => {
     const areas = selectedAreas.length > 0 ? selectedAreas.join(' / ') : 'Não especificado';
     let budget = 'Não especificado';
-    
+
     switch (data.budget) {
       case '20k-30k': budget = 'Entre 20k a 30k'; break;
       case '30k-50k': budget = 'Entre 30k a 50k'; break;
       case '50k-80k': budget = 'Entre 50k a 80k'; break;
       case 'acima-80k': budget = 'Acima de 80k'; break;
     }
-    
+
     return `Olá! Me chamo ${data.name}
 - Telefone/WhatsApp: ${data.phone}
 - E-mail: ${data.email}
@@ -104,6 +102,14 @@ const QuoteForm = () => {
     const formattedMessage = formatClientInfo(data);
     const whatsappNumber = '5581993122958';
     const encodedMessage = encodeURIComponent(formattedMessage);
+
+    // Evento de conversão do Google Ads
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17129459117/7SWHCPzhqdkaEK2b--c_'
+      });
+    }
+
     const whatsappDeepLink = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
     window.location.href = whatsappDeepLink;
 
@@ -131,7 +137,7 @@ const QuoteForm = () => {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       data.areas = selectedAreas.join(', ');
       await sendToEmail(data);
@@ -181,17 +187,13 @@ const QuoteForm = () => {
                             Nome Completo *
                           </FormLabel>
                           <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="Seu nome completo"
-                              className="h-12"
-                            />
+                            <Input {...field} placeholder="Seu nome completo" className="h-12" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="email"
@@ -201,12 +203,7 @@ const QuoteForm = () => {
                             E-mail *
                           </FormLabel>
                           <FormControl>
-                            <Input
-                              {...field}
-                              type="email"
-                              placeholder="seu@email.com"
-                              className="h-12"
-                            />
+                            <Input {...field} type="email" placeholder="seu@email.com" className="h-12" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -224,12 +221,7 @@ const QuoteForm = () => {
                             Telefone/WhatsApp *
                           </FormLabel>
                           <FormControl>
-                            <Input
-                              {...field}
-                              type="tel"
-                              placeholder="(11) 99999-9999"
-                              className="h-12"
-                            />
+                            <Input {...field} type="tel" placeholder="(11) 99999-9999" className="h-12" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -354,5 +346,4 @@ const QuoteForm = () => {
 };
 
 export default QuoteForm;
-
 
