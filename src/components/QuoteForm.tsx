@@ -98,30 +98,6 @@ const QuoteForm = () => {
 - Descrição do projeto: ${data.description}`;
   };
 
-  const sendToWhatsApp = (data: z.infer<typeof formSchema>) => {
-    const formattedMessage = formatClientInfo(data);
-    const whatsappNumber = '5581993122958';
-    const encodedMessage = encodeURIComponent(formattedMessage);
-
-    // Evento de conversão do Google Ads
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-17129459117/7SWHCPzhqdkaEK2b--c_'
-      });
-    }
-
-    const whatsappDeepLink = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
-    window.location.href = whatsappDeepLink;
-
-    setTimeout(() => {
-      const currentURL = window.location.href;
-      if (currentURL.includes(window.location.pathname)) {
-        const webWhatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
-        window.location.href = webWhatsappUrl;
-      }
-    }, 1000);
-  };
-
   const sendToEmail = async (data: z.infer<typeof formSchema>) => {
     console.log('Sending email to projetart@projetart.com with data:', data);
     return new Promise(resolve => setTimeout(resolve, 1000));
@@ -141,11 +117,40 @@ const QuoteForm = () => {
     try {
       data.areas = selectedAreas.join(', ');
       await sendToEmail(data);
-      sendToWhatsApp(data);
+
+      const formattedMessage = formatClientInfo(data);
+      const whatsappNumber = '5581993122958';
+      const encodedMessage = encodeURIComponent(formattedMessage);
+
+      const openWhatsApp = () => {
+        const deepLink = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
+        window.location.href = deepLink;
+
+        setTimeout(() => {
+          if (window.location.href.includes(window.location.pathname)) {
+            const fallback = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+            window.location.href = fallback;
+          }
+        }, 1000);
+      };
+
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-17129459117/7SWHCPzhqdkaEK2b--c_',
+          event_callback: openWhatsApp
+        });
+
+        setTimeout(() => {
+          openWhatsApp();
+        }, 800);
+      } else {
+        openWhatsApp();
+      }
+
       form.reset();
       setSelectedAreas([]);
     } catch (error) {
-      console.error('Error sending form:', error);
+      console.error('Erro ao enviar:', error);
       toast({
         title: "Erro ao enviar",
         description: "Ocorreu um erro ao enviar sua proposta. Por favor, tente novamente.",
@@ -156,194 +161,11 @@ const QuoteForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-12 bg-neutral-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-3">
-              Solicite Seu Orçamento
-            </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              Conte-nos sobre seu projeto e receba uma proposta personalizada para transformar seu espaço
-            </p>
-          </div>
-
-          <Card className="shadow-xl border-0 bg-white">
-            <CardHeader className="bg-wood-gradient text-white rounded-t-lg py-3">
-              <CardTitle className="text-2xl text-center">
-                Receba sua Proposta Gratuita
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-4 pt-0">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-sm font-medium text-neutral-700">
-                            Nome Completo *
-                          </FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="Seu nome completo" className="h-12" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-sm font-medium text-neutral-700">
-                            E-mail *
-                          </FormLabel>
-                          <FormControl>
-                            <Input {...field} type="email" placeholder="seu@email.com" className="h-12" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-sm font-medium text-neutral-700">
-                            Telefone/WhatsApp *
-                          </FormLabel>
-                          <FormControl>
-                            <Input {...field} type="tel" placeholder="(11) 99999-9999" className="h-12" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="budget"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-sm font-medium text-neutral-700">
-                            Quanto quer investir no seu projeto? *
-                          </FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="h-12">
-                                <SelectValue placeholder="Selecione uma faixa" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="20k-30k">De R$20k a R$30k</SelectItem>
-                              <SelectItem value="30k-50k">De R$30k a R$50k</SelectItem>
-                              <SelectItem value="50k-80k">De R$50k a R$80k</SelectItem>
-                              <SelectItem value="acima-80k">Acima de R$80k</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name="contactTime"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-neutral-700">
-                          Melhor horário para contato *
-                        </FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="h-12">
-                              <SelectValue placeholder="Selecione um horário" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Manhã">Manhã</SelectItem>
-                            <SelectItem value="Horário de Almoço">Horário de Almoço</SelectItem>
-                            <SelectItem value="Tarde">Tarde</SelectItem>
-                            <SelectItem value="Noite">Noite</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <div>
-                    <FormLabel className="text-sm font-medium text-neutral-700 mb-2 block">
-                      Ambientes Desejados *
-                    </FormLabel>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {areaOptions.map((area) => (
-                        <div
-                          key={area.value}
-                          onClick={() => handleSelectArea(area.value)}
-                          className={`cursor-pointer p-2 border rounded-md flex items-center justify-center text-center text-sm ${
-                            selectedAreas.includes(area.value)
-                              ? 'bg-wood-light text-white border-wood-dark'
-                              : 'bg-white border-gray-200 hover:bg-gray-50'
-                          }`}
-                        >
-                          {area.label}
-                        </div>
-                      ))}
-                    </div>
-                    {form.formState.errors.areas && (
-                      <p className="text-sm font-medium text-destructive mt-2">
-                        {form.formState.errors.areas.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-neutral-700">
-                          Descrição do Projeto *
-                        </FormLabel>
-                        <FormControl>
-                          <Textarea
-                            {...field}
-                            placeholder="Descreva seu projeto: tipo de móvel, ambiente, medidas aproximadas, preferências de estilo..."
-                            rows={4}
-                            className="resize-none"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full h-14 bg-wood-dark hover:bg-wood-medium text-white text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
-                  >
-                    {isSubmitting ? 'Enviando...' : 'Receber Proposta'}
-                  </Button>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </section>
+    // ... restante do JSX exatamente como está no seu código atual
+    // (formulário, campos, botões e estilos)
   );
 };
 
 export default QuoteForm;
+
 
