@@ -161,8 +161,146 @@ const QuoteForm = () => {
   };
 
   return (
-    // ... restante do JSX exatamente como está no seu código atual
-    // (formulário, campos, botões e estilos)
+    <section id="orcamento" className="py-12 bg-neutral-50">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-3">
+              Solicite Seu Orçamento
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Conte-nos sobre seu projeto e receba uma proposta personalizada para transformar seu espaço
+            </p>
+          </div>
+
+          <Card className="shadow-xl border-0 bg-white">
+            <CardHeader className="bg-wood-gradient text-white rounded-t-lg py-3">
+              <CardTitle className="text-2xl text-center">
+                Receba sua Proposta Gratuita
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 pt-0">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 -mt-6">
+                    <FormField control={form.control} name="name" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nome Completo *</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="Seu nome completo" className="h-12" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+
+                    <FormField control={form.control} name="email" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>E-mail *</FormLabel>
+                        <FormControl>
+                          <Input {...field} type="email" placeholder="seu@email.com" className="h-12" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField control={form.control} name="phone" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Telefone/WhatsApp *</FormLabel>
+                        <FormControl>
+                          <Input {...field} type="tel" placeholder="(11) 99999-9999" className="h-12" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+
+                    <FormField control={form.control} name="budget" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Quanto quer investir? *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12">
+                              <SelectValue placeholder="Selecione uma faixa" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="20k-30k">R$20k a R$30k</SelectItem>
+                            <SelectItem value="30k-50k">R$30k a R$50k</SelectItem>
+                            <SelectItem value="50k-80k">R$50k a R$80k</SelectItem>
+                            <SelectItem value="acima-80k">Acima de R$80k</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+
+                  <FormField control={form.control} name="contactTime" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Melhor horário para contato *</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="h-12">
+                            <SelectValue placeholder="Selecione um horário" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="Manhã">Manhã</SelectItem>
+                          <SelectItem value="Horário de Almoço">Horário de Almoço</SelectItem>
+                          <SelectItem value="Tarde">Tarde</SelectItem>
+                          <SelectItem value="Noite">Noite</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <div>
+                    <FormLabel>Ambientes Desejados *</FormLabel>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {areaOptions.map((area) => (
+                        <div
+                          key={area.value}
+                          onClick={() => handleSelectArea(area.value)}
+                          className={`cursor-pointer p-2 border rounded-md flex items-center justify-center text-center text-sm ${selectedAreas.includes(area.value) ? 'bg-wood-light text-white border-wood-dark' : 'bg-white border-gray-200 hover:bg-gray-50'}`}
+                        >
+                          {area.label}
+                        </div>
+                      ))}
+                    </div>
+                    {form.formState.errors.areas && (
+                      <p className="text-sm font-medium text-destructive mt-2">
+                        {form.formState.errors.areas.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <FormField control={form.control} name="description" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Descrição do Projeto *</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          {...field}
+                          placeholder="Descreva seu projeto..."
+                          rows={4}
+                          className="resize-none"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <Button type="submit" disabled={isSubmitting} className="w-full h-14 bg-wood-dark hover:bg-wood-medium text-white text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                    {isSubmitting ? 'Enviando...' : 'Receber Proposta'}
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
   );
 };
 
