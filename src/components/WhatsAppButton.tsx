@@ -3,8 +3,8 @@ import React from 'react';
 
 const WhatsAppButton = () => {
   const handleClick = () => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
         send_to: 'AW-17129459117/7SWHCPzhqdkaEK2b--c_',
       });
     }
