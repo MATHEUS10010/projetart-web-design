@@ -104,10 +104,49 @@ const QuoteForm = () => {
   };
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    // Validação rigorosa de todos os campos obrigatórios
+    let hasErrors = false;
+
+    if (!data.name || data.name.trim().length < 3) {
+      form.setError('name', { type: 'manual', message: 'Nome deve ter no mínimo 3 caracteres' });
+      hasErrors = true;
+    }
+
+    if (!data.email || !data.email.includes('@')) {
+      form.setError('email', { type: 'manual', message: 'Email inválido' });
+      hasErrors = true;
+    }
+
+    if (!data.phone || data.phone.trim().length < 10) {
+      form.setError('phone', { type: 'manual', message: 'Telefone inválido' });
+      hasErrors = true;
+    }
+
+    if (!data.budget || data.budget.trim() === '') {
+      form.setError('budget', { type: 'manual', message: 'Selecione uma faixa de investimento' });
+      hasErrors = true;
+    }
+
+    if (!data.contactTime || data.contactTime.trim() === '') {
+      form.setError('contactTime', { type: 'manual', message: 'Selecione um horário de contato' });
+      hasErrors = true;
+    }
+
     if (selectedAreas.length === 0) {
-      form.setError('areas', {
-        type: 'manual',
-        message: 'Selecione pelo menos um ambiente'
+      form.setError('areas', { type: 'manual', message: 'Selecione pelo menos um ambiente' });
+      hasErrors = true;
+    }
+
+    if (!data.description || data.description.trim().length < 10) {
+      form.setError('description', { type: 'manual', message: 'Por favor, forneça mais detalhes sobre seu projeto' });
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos obrigatórios.",
+        variant: "destructive",
       });
       return;
     }
