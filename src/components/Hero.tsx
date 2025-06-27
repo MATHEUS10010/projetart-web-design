@@ -69,7 +69,7 @@ const Hero = () => {
         {/* Stats section - Added mb-16 for mobile to prevent overlap with scroll indicator */}
         <div className="mt-12 mb-16 md:mb-0 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
           <div className="text-center">
-            <div className="text-3xl font-bold text-wood-light mb-2">10+</div>
+            <div className="text-3xl font-bold text-wood-light mb-2">12+</div>
             <div className="text-neutral-300">Anos de Experiência</div>
           </div>
           <div className="text-center">
