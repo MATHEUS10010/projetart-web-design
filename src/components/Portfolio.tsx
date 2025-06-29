@@ -47,7 +47,11 @@ const Portfolio = () => {
       description:
         'Móveis planejados para consultório odontológico com acabamento em madeira clara, iluminação embutida e design funcional para equipamentos específicos.',
       gallery: [
-        '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png'
+        '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png',
+        '/lovable-uploads/7a55a76e-e77a-4481-8c53-f84775a7bd01.png',
+        '/lovable-uploads/6322ae4c-7394-408d-bb5d-dc3feacae582.png',
+        '/lovable-uploads/474af4ab-043c-4a1c-9adc-bf0a93476110.png',
+        '/lovable-uploads/be90dad1-3ed8-449d-aae6-bc991d5fe70a.png'
       ]
     },
     {
