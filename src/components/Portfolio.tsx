@@ -1,6 +1,8 @@
 
+
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -118,10 +120,41 @@ const Portfolio = () => {
   };
 
   const handleImageClick = (imageUrl, project) => {
+    const currentIndex = project.gallery.indexOf(imageUrl);
     setSelectedImage({
       url: imageUrl,
-      project: project
+      project: project,
+      currentIndex: currentIndex
     });
+  };
+
+  const navigateImage = (direction) => {
+    if (!selectedImage) return;
+    
+    const { project, currentIndex } = selectedImage;
+    const totalImages = project.gallery.length;
+    
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % totalImages;
+    } else {
+      newIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+    }
+    
+    setSelectedImage({
+      url: project.gallery[newIndex],
+      project: project,
+      currentIndex: newIndex
+    });
+  };
+
+  const handleCtaClick = () => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        send_to: 'AW-17129459117/7SWHCPzhqdkaEK2b--c_',
+      });
+    }
+    window.open('https://wa.me/5555999633435', '_blank');
   };
 
   const closeModals = () => {
@@ -207,6 +240,16 @@ const Portfolio = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* CTA Button in Gallery Modal */}
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={handleCtaClick}
+                    className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-300 transform hover:scale-105"
+                  >
+                    QUERO MEU MÓVEL PLANEJADO
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -224,8 +267,31 @@ const Portfolio = () => {
                 ✕
               </button>
 
+              {/* Navigation Arrows */}
+              {selectedImage.project.gallery.length > 1 && (
+                <>
+                  <button
+                    onClick={() => navigateImage('prev')}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-3 shadow-md transition z-10"
+                    aria-label="Imagem anterior"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={() => navigateImage('next')}
+                    className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-black rounded-full p-3 shadow-md transition z-10"
+                    aria-label="Próxima imagem"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+
               <div className="px-6 pt-6">
                 <h2 className="text-2xl font-bold">{selectedImage.project.title}</h2>
+                <p className="text-sm text-neutral-600 mt-1">
+                  {selectedImage.currentIndex + 1} de {selectedImage.project.gallery.length}
+                </p>
               </div>
 
               <div className="w-full bg-black flex items-center justify-center">
@@ -251,9 +317,19 @@ const Portfolio = () => {
                 </div>
               </div>
 
-              <p className="text-neutral-700 leading-relaxed px-6 pb-6">
+              <p className="text-neutral-700 leading-relaxed px-6 pb-4">
                 {selectedImage.project.description}
               </p>
+
+              {/* CTA Button in Image Zoom Modal */}
+              <div className="px-6 pb-6 text-center">
+                <button
+                  onClick={handleCtaClick}
+                  className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-300 transform hover:scale-105"
+                >
+                  QUERO MEU MÓVEL PLANEJADO
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -263,3 +339,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
