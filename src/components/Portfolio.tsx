@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const projects = [
     {
@@ -14,6 +16,10 @@ const Portfolio = () => {
       image: '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
       description:
         'Cozinha moderna com ilha central, acabamentos em tons neutros e detalhes em madeira. Projeto com iluminação LED embutida e bancada com espaço para refeições.',
+      gallery: [
+        '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
+        '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png'
+      ]
     },
     {
       id: 2,
@@ -24,6 +30,9 @@ const Portfolio = () => {
       image: '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
       description:
         'Quarto completo com armários planejados, cabeceira integrada com iluminação e closet com portas espelhadas para ampliar o ambiente.',
+      gallery: [
+        '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png'
+      ]
     },
     {
       id: 3,
@@ -34,6 +43,9 @@ const Portfolio = () => {
       image: '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png',
       description:
         'Móveis planejados para consultório odontológico com acabamento em madeira clara, iluminação embutida e design funcional para equipamentos específicos.',
+      gallery: [
+        '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png'
+      ]
     },
     {
       id: 4,
@@ -44,6 +56,9 @@ const Portfolio = () => {
       image: '/lovable-uploads/0d6c0403-1e66-40e8-b715-4a91fdae41c4.png',
       description:
         'Sala de estar com painel para TV em mármore, rack planejado com detalhes em dourado e móvel aparador com acabamento premium.',
+      gallery: [
+        '/lovable-uploads/0d6c0403-1e66-40e8-b715-4a91fdae41c4.png'
+      ]
     },
     {
       id: 5,
@@ -54,6 +69,10 @@ const Portfolio = () => {
       image: '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
       description:
         'Cozinha gourmet integrada com sala, bancada em quartzo, painel ripado e revestimento em mármore. Acabamentos premium e iluminação planejada.',
+      gallery: [
+        '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
+        '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png'
+      ]
     },
     {
       id: 6,
@@ -64,8 +83,48 @@ const Portfolio = () => {
       image: '/lovable-uploads/91740045-ea3b-479c-9e73-2ab0bcae5fd5.png',
       description:
         'Escritório completo com armários planejados, bancada para dois postos de trabalho, iluminação embutida e acabamento em tons claros com detalhe em madeira natural.',
+      gallery: [
+        '/lovable-uploads/91740045-ea3b-479c-9e73-2ab0bcae5fd5.png'
+      ]
     },
+    {
+      id: 7,
+      title: 'Loja de Chocolate Premium',
+      location: 'Gramado, RS',
+      area: '35m²',
+      type: 'Loja Comercial',
+      image: '/lovable-uploads/9359b08d-d64d-4e2f-b307-adb0b3bd8e1b.png',
+      description:
+        'Projeto comercial para loja de chocolates com móveis planejados em tons amarelos e vermelhos, iluminação especial e layout otimizado para exposição de produtos.',
+      gallery: [
+        '/lovable-uploads/9359b08d-d64d-4e2f-b307-adb0b3bd8e1b.png',
+        '/lovable-uploads/dcf1194f-366f-4738-87ac-76347018a7eb.png',
+        '/lovable-uploads/7f728380-2faf-4ee0-b9a3-0c06d3f9d0ab.png',
+        '/lovable-uploads/8b094333-0480-4fed-b244-3fd322371084.png',
+        '/lovable-uploads/11585ce6-64c0-45ea-a3b4-602489997b00.png',
+        '/lovable-uploads/23865bd7-bfab-4e6d-be12-e61e9d542eeb.png',
+        '/lovable-uploads/2ec24ec9-e0ee-4f0a-8060-4f291b572306.png',
+        '/lovable-uploads/ad8d93d6-9eff-4637-934c-4bdde9975ecd.png'
+      ]
+    }
   ];
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setSelectedImage(null);
+  };
+
+  const handleImageClick = (imageUrl, project) => {
+    setSelectedImage({
+      url: imageUrl,
+      project: project
+    });
+  };
+
+  const closeModals = () => {
+    setSelectedProject(null);
+    setSelectedImage(null);
+  };
 
   return (
     <section id="portfolio" className="py-16 bg-white">
@@ -85,7 +144,7 @@ const Portfolio = () => {
               key={project.id}
               className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl border-0 overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => handleProjectClick(project)}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -94,7 +153,7 @@ const Portfolio = () => {
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white font-semibold text-lg">Ver Detalhes</span>
+                  <span className="text-white font-semibold text-lg">Ver Galeria</span>
                 </div>
               </div>
               <CardContent className="p-6">
@@ -111,26 +170,65 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Modal manual sem bug */}
-        {selectedProject && (
-          <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        {/* Modal da Galeria */}
+        {selectedProject && !selectedImage && (
+          <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="relative bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+              <button
+                onClick={closeModals}
+                className="absolute top-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition z-10"
+                aria-label="Fechar"
+              >
+                ✕
+              </button>
+
+              <div className="p-6">
+                <h2 className="text-2xl font-bold mb-2">{selectedProject.title}</h2>
+                <p className="text-neutral-600 mb-6">Clique na imagem para ver os detalhes</p>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {selectedProject.gallery.map((imageUrl, index) => (
+                    <div
+                      key={index}
+                      className="relative cursor-pointer group overflow-hidden rounded-lg"
+                      onClick={() => handleImageClick(imageUrl, selectedProject)}
+                    >
+                      <img
+                        src={imageUrl}
+                        alt={`${selectedProject.title} - Foto ${index + 1}`}
+                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span className="text-white font-semibold">Ampliar</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal do Zoom da Imagem */}
+        {selectedImage && (
+          <div className="fixed inset-0 z-[10000] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
             <div className="relative bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
               <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition"
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-neutral-200 transition z-10"
                 aria-label="Fechar"
               >
                 ✕
               </button>
 
               <div className="px-6 pt-6">
-                <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
+                <h2 className="text-2xl font-bold">{selectedImage.project.title}</h2>
               </div>
 
               <div className="w-full bg-black flex items-center justify-center">
                 <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
+                  src={selectedImage.url}
+                  alt={selectedImage.project.title}
                   className="w-auto max-h-[60vh] object-contain mx-auto"
                 />
               </div>
@@ -138,20 +236,20 @@ const Portfolio = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-6 pt-4 pb-2 text-sm">
                 <div>
                   <span className="font-semibold text-neutral-700">Local:</span>
-                  <p className="text-neutral-600">{selectedProject.location}</p>
+                  <p className="text-neutral-600">{selectedImage.project.location}</p>
                 </div>
                 <div>
                   <span className="font-semibold text-neutral-700">Área:</span>
-                  <p className="text-neutral-600">{selectedProject.area}</p>
+                  <p className="text-neutral-600">{selectedImage.project.area}</p>
                 </div>
                 <div>
                   <span className="font-semibold text-neutral-700">Tipo:</span>
-                  <p className="text-neutral-600">{selectedProject.type}</p>
+                  <p className="text-neutral-600">{selectedImage.project.type}</p>
                 </div>
               </div>
 
               <p className="text-neutral-700 leading-relaxed px-6 pb-6">
-                {selectedProject.description}
+                {selectedImage.project.description}
               </p>
             </div>
           </div>
@@ -162,9 +260,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
-
-
-
-
-
