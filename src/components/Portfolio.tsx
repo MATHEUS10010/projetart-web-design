@@ -64,7 +64,12 @@ const Portfolio = () => {
       description:
         'Sala de estar com painel para TV em mármore, rack planejado com detalhes em dourado e móvel aparador com acabamento premium.',
       gallery: [
-        '/lovable-uploads/0d6c0403-1e66-40e8-b715-4a91fdae41c4.png'
+        '/lovable-uploads/0d6c0403-1e66-40e8-b715-4a91fdae41c4.png',
+        '/lovable-uploads/2d1343a4-27f9-41cf-a9a2-ba553c3215e6.png',
+        '/lovable-uploads/657d616b-4d19-43e6-a2e8-382f3026dc3e.png',
+        '/lovable-uploads/0e764488-6be3-4a99-929c-defa93d9cdf7.png',
+        '/lovable-uploads/4d012927-98b9-4694-b143-45b842eb7854.png',
+        '/lovable-uploads/bdf9b84b-0704-49dd-974b-775d3f24526e.png'
       ]
     },
     {
