@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -9,16 +8,20 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: 'Cozinha Moderna Integrada',
+      title: 'Cozinha Moderna Planejada',
       location: 'Três de Maio, RS',
-      area: '15m²',
+      area: '15-20m²',
       type: 'Cozinha Planejada',
       image: '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
       description:
-        'Cozinha moderna com ilha central, acabamentos em tons neutros e detalhes em madeira. Projeto com iluminação LED embutida e bancada com espaço para refeições.',
+        'Cozinhas modernas com ilha central, acabamentos em tons neutros e detalhes em madeira. Projetos com iluminação LED embutida, bancadas em quartzo e mármore, e espaços otimizados para refeições.',
       gallery: [
         '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
-        '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png'
+        '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
+        '/lovable-uploads/c2ac4762-a37c-47b3-a646-0b47535f0531.png',
+        '/lovable-uploads/ff70eae8-0047-4bb1-a825-ee6fa202f0b0.png',
+        '/lovable-uploads/dcfeb31d-e30a-4202-80a6-47cfdf25abcd.png',
+        '/lovable-uploads/0ad6ac14-bc15-42cf-b931-1bb3ec3a06b2.png'
       ]
     },
     {
@@ -62,20 +65,6 @@ const Portfolio = () => {
     },
     {
       id: 5,
-      title: 'Cozinha Gourmet com Bancada',
-      location: 'Três de Maio, RS',
-      area: '20m²',
-      type: 'Cozinha Gourmet',
-      image: '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
-      description:
-        'Cozinha gourmet integrada com sala, bancada em quartzo, painel ripado e revestimento em mármore. Acabamentos premium e iluminação planejada.',
-      gallery: [
-        '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
-        '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png'
-      ]
-    },
-    {
-      id: 6,
       title: 'Escritório Planejado',
       location: 'Três de Maio, RS',
       area: '14m²',
@@ -88,7 +77,7 @@ const Portfolio = () => {
       ]
     },
     {
-      id: 7,
+      id: 6,
       title: 'Loja de Chocolate Premium',
       location: 'Gramado, RS',
       area: '35m²',
