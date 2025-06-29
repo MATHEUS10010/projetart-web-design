@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -149,12 +147,16 @@ const Portfolio = () => {
   };
 
   const handleCtaClick = () => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-17129459117/7SWHCPzhqdkaEK2b--c_',
-      });
-    }
-    window.open('https://wa.me/5555999633435', '_blank');
+    // Close modals first
+    closeModals();
+    
+    // Scroll to quote form
+    setTimeout(() => {
+      const element = document.querySelector('#orcamento');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   const closeModals = () => {
@@ -339,4 +341,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
