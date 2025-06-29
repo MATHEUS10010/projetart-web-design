@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -34,7 +35,9 @@ const Portfolio = () => {
       description:
         'Quarto completo com armários planejados, cabeceira integrada com iluminação e closet com portas espelhadas para ampliar o ambiente.',
       gallery: [
-        '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png'
+        '/lovable-uploads/2592bcdb-392b-482d-bc60-571621b7bb11.png',
+        '/lovable-uploads/2e0872e9-ae05-47a3-8663-e83214aa42ad.png',
+        '/lovable-uploads/34276f0a-2a8d-4a1d-a3b8-b8214ca5cbfb.png'
       ]
     },
     {
@@ -82,7 +85,9 @@ const Portfolio = () => {
       description:
         'Escritório completo com armários planejados, bancada para dois postos de trabalho, iluminação embutida e acabamento em tons claros com detalhe em madeira natural.',
       gallery: [
-        '/lovable-uploads/91740045-ea3b-479c-9e73-2ab0bcae5fd5.png'
+        '/lovable-uploads/91740045-ea3b-479c-9e73-2ab0bcae5fd5.png',
+        '/lovable-uploads/0d6e8bde-3197-4edb-b3e4-82ef27cc1789.png',
+        '/lovable-uploads/899d4344-d1ff-4488-b9e0-48318901566d.png'
       ]
     },
     {
