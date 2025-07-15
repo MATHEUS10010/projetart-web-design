@@ -33,10 +33,6 @@
       fbq('init', '711536818364781');
       fbq('track', 'PageView');
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=711536818364781&ev=PageView&noscript=1"/>
-    </noscript>
     <!-- End Meta Pixel Code -->
 
     <!-- Open Graph / Facebook -->
@@ -63,8 +59,16 @@
 
   <body>
     <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+
+    <!-- Meta Pixel fallback (noscript) -->
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=711536818364781&ev=PageView&noscript=1" />
+    </noscript>
+
+    <!-- Scripts -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-  </body>
+  </body>
 </html>
+
