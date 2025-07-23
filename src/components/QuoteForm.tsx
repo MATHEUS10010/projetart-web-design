@@ -173,10 +173,7 @@ const QuoteForm = () => {
         }, 1000);
       };
 
-      // Meta Pixel tracking
-      if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
-        (window as any).fbq('trackCustom', 'Lead');
-      }
+      // Meta Pixel - Lead event removed, tracked via GTM
 
       if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
         (window as any).gtag('event', 'conversion', {
