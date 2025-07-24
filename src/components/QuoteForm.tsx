@@ -18,6 +18,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import { supabase } from '@/integrations/supabase/client';
 
 const formSchema = z.object({
   name: z.string().min(3, { message: 'Nome deve ter no mínimo 3 caracteres' }),
@@ -155,7 +156,37 @@ const QuoteForm = () => {
 
     try {
       data.areas = selectedAreas.join(', ');
+      
+      // Salvar no Supabase
+      const { error: supabaseError } = await supabase
+        .from('quote_submissions')
+        .insert({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          budget: data.budget,
+          contact_time: data.contactTime,
+          areas: selectedAreas,
+          description: data.description
+        });
+
+      if (supabaseError) {
+        console.error('Erro ao salvar no Supabase:', supabaseError);
+        toast({
+          title: "Erro ao salvar",
+          description: "Ocorreu um erro ao salvar os dados. Por favor, tente novamente.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       await sendToEmail(data);
+
+      toast({
+        title: "Sucesso!",
+        description: "Seus dados foram salvos com sucesso. Redirecionando para WhatsApp...",
+      });
 
       const formattedMessage = formatClientInfo(data);
       const whatsappNumber = '555599633435';
