@@ -155,20 +155,28 @@ const QuoteForm = () => {
     setIsSubmitting(true);
 
     try {
+      console.log('Dados do formulário antes de enviar:', data);
+      console.log('Áreas selecionadas:', selectedAreas);
+      
       data.areas = selectedAreas.join(', ');
       
       // Salvar no Supabase
-      const { error: supabaseError } = await supabase
+      const supabaseData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        budget: data.budget,
+        contact_time: data.contactTime,
+        areas: selectedAreas,
+        description: data.description
+      };
+      
+      console.log('Enviando dados para Supabase:', supabaseData);
+      
+      const { data: insertedData, error: supabaseError } = await supabase
         .from('quote_submissions')
-        .insert({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          budget: data.budget,
-          contact_time: data.contactTime,
-          areas: selectedAreas,
-          description: data.description
-        });
+        .insert(supabaseData)
+        .select();
 
       if (supabaseError) {
         console.error('Erro ao salvar no Supabase:', supabaseError);
@@ -180,6 +188,8 @@ const QuoteForm = () => {
         setIsSubmitting(false);
         return;
       }
+      
+      console.log('Dados salvos no Supabase com sucesso:', insertedData);
 
       await sendToEmail(data);
 
