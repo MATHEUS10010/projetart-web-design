@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import {
   Form,
   FormControl,
@@ -155,6 +156,31 @@ const QuoteForm = () => {
 
     try {
       data.areas = selectedAreas.join(', ');
+      
+      // Salvar no Supabase
+      const { error } = await supabase
+        .from('quote_submissions')
+        .insert({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          description: data.description || '',
+          budget: data.budget,
+          contact_time: data.contactTime,
+          areas: selectedAreas
+        });
+
+      if (error) {
+        console.error('Erro ao salvar no Supabase:', error);
+        toast({
+          title: "Erro ao salvar",
+          description: "Ocorreu um erro ao salvar suas informações. Por favor, tente novamente.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       await sendToEmail(data);
 
       const formattedMessage = formatClientInfo(data);
