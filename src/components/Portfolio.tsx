@@ -19,9 +19,9 @@ const Portfolio = () => {
       gallery: [
         '/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png',
         '/lovable-uploads/78ca0f63-57e4-461e-97da-7feb85601214.png',
-        '/lovable-uploads/c2ac4762-a37c-47b3-a646-0b47535f0531.png',
-        '/lovable-uploads/ff70eae8-0047-4bb1-a825-ee6fa202f0b0.png',
-        '/lovable-uploads/dcfeb31d-e30a-4202-80a6-47cfdf25abcd.png',
+        '/lovable-uploads/c2ac4762-a37c-47b3-a646-0b47535f0531.webp',
+        '/lovable-uploads/ff70eae8-0047-4bb1-a825-ee6fa202f0b0.webp',
+        '/lovable-uploads/dcfeb31d-e30a-4202-80a6-47cfdf25abcd.webp',
         '/lovable-uploads/0ad6ac14-bc15-42cf-b931-1bb3ec3a06b2.png'
       ]
     },
@@ -46,15 +46,15 @@ const Portfolio = () => {
       location: 'Três de Maio, RS',
       area: '12m²',
       type: 'Consultório',
-      image: '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png',
+      image: '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.webp',
       description:
         'Móveis planejados para consultório odontológico com acabamento em madeira clara, iluminação embutida e design funcional para equipamentos específicos.',
       gallery: [
-        '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.png',
-        '/lovable-uploads/7a55a76e-e77a-4481-8c53-f84775a7bd01.png',
-        '/lovable-uploads/6322ae4c-7394-408d-bb5d-dc3feacae582.png',
-        '/lovable-uploads/474af4ab-043c-4a1c-9adc-bf0a93476110.png',
-        '/lovable-uploads/be90dad1-3ed8-449d-aae6-bc991d5fe70a.png'
+        '/lovable-uploads/0d69fce9-412f-49d5-9b66-8ab509aa5eac.webp',
+        '/lovable-uploads/7a55a76e-e77a-4481-8c53-f84775a7bd01.webp',
+        '/lovable-uploads/6322ae4c-7394-408d-bb5d-dc3feacae582.webp',
+        '/lovable-uploads/474af4ab-043c-4a1c-9adc-bf0a93476110.webp',
+        '/lovable-uploads/be90dad1-3ed8-449d-aae6-bc991d5fe70a.webp'
       ]
     },
     {
@@ -96,18 +96,18 @@ const Portfolio = () => {
       location: 'Gramado, RS',
       area: '35m²',
       type: 'Loja Comercial',
-      image: '/lovable-uploads/9359b08d-d64d-4e2f-b307-adb0b3bd8e1b.png',
+      image: '/lovable-uploads/9359b08d-d64d-4e2f-b307-adb0b3bd8e1b.webp',
       description:
         'Projeto comercial para loja de chocolates com móveis planejados em tons amarelos e vermelhos, iluminação especial e layout otimizado para exposição de produtos.',
       gallery: [
-        '/lovable-uploads/9359b08d-d64d-4e2f-b307-adb0b3bd8e1b.png',
-        '/lovable-uploads/dcf1194f-366f-4738-87ac-76347018a7eb.png',
+        '/lovable-uploads/9359b08d-d64d-4e2f-b307-adb0b3bd8e1b.webp',
+        '/lovable-uploads/dcf1194f-366f-4738-87ac-76347018a7eb.webp',
         '/lovable-uploads/7f728380-2faf-4ee0-b9a3-0c06d3f9d0ab.png',
-        '/lovable-uploads/8b094333-0480-4fed-b244-3fd322371084.png',
-        '/lovable-uploads/11585ce6-64c0-45ea-a3b4-602489997b00.png',
-        '/lovable-uploads/23865bd7-bfab-4e6d-be12-e61e9d542eeb.png',
-        '/lovable-uploads/2ec24ec9-e0ee-4f0a-8060-4f291b572306.png',
-        '/lovable-uploads/ad8d93d6-9eff-4637-934c-4bdde9975ecd.png'
+        '/lovable-uploads/8b094333-0480-4fed-b244-3fd322371084.webp',
+        '/lovable-uploads/11585ce6-64c0-45ea-a3b4-602489997b00.webp',
+        '/lovable-uploads/23865bd7-bfab-4e6d-be12-e61e9d542eeb.webp',
+        '/lovable-uploads/2ec24ec9-e0ee-4f0a-8060-4f291b572306.webp',
+        '/lovable-uploads/ad8d93d6-9eff-4637-934c-4bdde9975ecd.webp'
       ]
     }
   ];
