@@ -22,7 +22,6 @@ import * as z from 'zod';
 
 const formSchema = z.object({
   name: z.string().min(3, { message: 'Nome deve ter no mínimo 3 caracteres' }),
-  email: z.string().email({ message: 'Email inválido' }),
   phone: z.string().min(10, { message: 'Telefone inválido' }),
   description: z.string().min(10, { message: 'Por favor, forneça mais detalhes sobre seu projeto' }),
   budget: z.string({ required_error: "Por favor, selecione uma faixa de investimento" }),
@@ -39,7 +38,6 @@ const QuoteForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      email: '',
       phone: '',
       description: '',
       budget: '',
@@ -89,7 +87,6 @@ const QuoteForm = () => {
 
     return `Olá! Me chamo ${data.name}
 - Telefone/WhatsApp: ${data.phone}
-- E-mail: ${data.email}
 
 - Tenho interesse em um projeto de móveis planejados e gostaria de receber uma proposta personalizada.
 
@@ -113,10 +110,6 @@ const QuoteForm = () => {
       hasErrors = true;
     }
 
-    if (!data.email || !data.email.includes('@')) {
-      form.setError('email', { type: 'manual', message: 'Email inválido' });
-      hasErrors = true;
-    }
 
     if (!data.phone || data.phone.trim().length < 10) {
       form.setError('phone', { type: 'manual', message: 'Telefone inválido' });
@@ -162,7 +155,6 @@ const QuoteForm = () => {
         .from('quote_submissions')
         .insert({
           name: data.name,
-          email: data.email,
           phone: data.phone,
           description: data.description || '',
           budget: data.budget,
@@ -260,18 +252,6 @@ const QuoteForm = () => {
                       </FormItem>
                     )} />
 
-                    <FormField control={form.control} name="email" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>E-mail *</FormLabel>
-                        <FormControl>
-                          <Input {...field} type="email" placeholder="seu@email.com" className="h-12" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField control={form.control} name="phone" render={({ field }) => (
                       <FormItem>
                         <FormLabel>Telefone/WhatsApp *</FormLabel>
@@ -281,27 +261,27 @@ const QuoteForm = () => {
                         <FormMessage />
                       </FormItem>
                     )} />
-
-                    <FormField control={form.control} name="budget" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Quanto quer investir? *</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="h-12">
-                              <SelectValue placeholder="Selecione uma faixa" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="20k-30k">R$20k a R$30k</SelectItem>
-                            <SelectItem value="30k-50k">R$30k a R$50k</SelectItem>
-                            <SelectItem value="50k-80k">R$50k a R$80k</SelectItem>
-                            <SelectItem value="acima-80k">Acima de R$80k</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
                   </div>
+
+                  <FormField control={form.control} name="budget" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Quanto quer investir? *</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="h-12">
+                            <SelectValue placeholder="Selecione uma faixa" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="20k-30k">R$20k a R$30k</SelectItem>
+                          <SelectItem value="30k-50k">R$30k a R$50k</SelectItem>
+                          <SelectItem value="50k-80k">R$50k a R$80k</SelectItem>
+                          <SelectItem value="acima-80k">Acima de R$80k</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
 
                   <FormField control={form.control} name="contactTime" render={({ field }) => (
                     <FormItem>
