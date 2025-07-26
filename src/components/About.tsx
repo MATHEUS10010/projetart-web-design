@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import badgeImage from '@/assets/projetart-12-anos-badge.jpg';
 
 const About = () => {
   return (
@@ -53,7 +52,7 @@ const About = () => {
               <Card className="border-0 shadow-lg overflow-hidden">
                 <CardContent className="p-4">
                   <img
-                    src={badgeImage}
+                    src="/lovable-uploads/bb6c485f-205c-407b-9bf5-502da9be20f1.png"
                     alt="Projetart Móveis Sob Medida - 12 Anos"
                     className="mx-auto w-full max-w-sm rounded-xl shadow-md"
                     loading="lazy"
