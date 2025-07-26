@@ -155,6 +155,7 @@ const QuoteForm = () => {
         .from('quote_submissions')
         .insert({
           name: data.name,
+          email: '', // Email vazio já que removemos o campo
           phone: data.phone,
           description: data.description || '',
           budget: data.budget,

@@ -21,7 +21,7 @@ export type Database = {
           contact_time: string
           created_at: string
           description: string | null
-          email: string
+          email: string | null
           id: string
           name: string
           phone: string
@@ -33,7 +33,7 @@ export type Database = {
           contact_time: string
           created_at?: string
           description?: string | null
-          email: string
+          email?: string | null
           id?: string
           name: string
           phone: string
@@ -45,7 +45,7 @@ export type Database = {
           contact_time?: string
           created_at?: string
           description?: string | null
-          email?: string
+          email?: string | null
           id?: string
           name?: string
           phone?: string
