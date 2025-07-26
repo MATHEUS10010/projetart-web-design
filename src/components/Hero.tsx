@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Phone } from 'lucide-react';
+import heroBg from '@/assets/hero-bg-high-quality.jpg';
 
 const Hero = () => {
   const handleWhatsAppClick = () => {
@@ -23,7 +24,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{
-          backgroundImage: 'url("/lovable-uploads/c980be59-c7a7-4914-a2cf-41a3543b6be2.png")',
+          backgroundImage: `url(${heroBg})`,
         }}
       >
         <div className="absolute inset-0 bg-black/50 pointer-events-none" />
